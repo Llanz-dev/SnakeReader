@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+        <!-- Bootstrap CSS-->
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+        <!-- File CSS -->
+
+        {% block file_css %}
+
+        {% endblock file_css %}
+
+        <title>
+            {% block title %}
+            SnakeReader
+            {% endblock title %}
+        </title>
+    </head>
+
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+            <div class="container-md">
+                <a class="navbar-brand fw-bold fs-4" href="/">Snake<span class="text-success">Reader</span></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'blog:about' %}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'blog:contact' %}">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Categories
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Health</a></li>
+                                <li><a class="dropdown-item" href="#">Sports</a></li>
+                                <li><a class="dropdown-item" href="#">Finance</a></li>
+                                <li><a class="dropdown-item" href="{% url 'blog:specific_category' %}">Technology</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Fashion</a></li>
+                                <li><a class="dropdown-item" href="#">Travel</a></li>
+                                <li><a class="dropdown-item" href="#">Music</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <a class="btn btn-outline-success" href="{% url 'accounts:sign-in' %} " role="button">Sign
+                            In</a>
+                        <a class="btn btn-success" href="{% url 'accounts:sign-up' %}" role="button">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+
+        {% block content %}
+
+        {% endblock content %}
+
+
+        <br>
+
+        <!-- Footer -->
+        <footer class="mt-5 bg-light py-3">
+            <div class="container-md">
+                <div class="row">
+                    <h3 class="fw-bold mb-2 fs-2"><a href="home.html" class="title-blog">Snake<span
+                                class="text-success">Reader</span></a></h3>
+                    <div class="col-md-4">
+                        <p class="fs-6">Read, Lead, Succeed.</p>
+                        <p class="fs-5 fw-bold">About Us</p>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed, laborum ab.</p>
+                        <p class="fs-5 fw-bold">Contact Us</p>
+                        <div>
+                            <img class="me-4" src="{% static 'bootstrap/icons/phone.svg' %}" alt="phone icon"> +63 9517
+                            730 208
+                        </div>
+                        <div>
+                            <img class="me-4" src="{% static 'bootstrap/icons/envelope.svg' %}" alt="envelope icon">
+                            snakereader_20@gmail.com
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="fs-5 fw-bold">Information</p>
+                        <p class="fs-5"><a href="" class="text-success footer-link">About Us</a></p>
+                        <p class="fs-5"><a href="" class="text-success footer-link">Testimonials</a></p>
+                        <p class="fs-5"><a href="" class="text-success footer-link">Events</a></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="fs-5 fw-bold">Helpful Links</p>
+                        <p class="fs-5"><a href="" class="text-success footer-link">Services</a></p>
+                        <p class="fs-5"><a href="" class="text-success footer-link">Supports</a></p>
+                        <p class="fs-5"><a href="" class="text-success footer-link">Terms & Condition</a></p>
+                        <p class="fs-5"><a href="" class="text-success footer-link">Privacy Policy</a></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+    </body>
+
+</html>

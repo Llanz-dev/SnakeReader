@@ -1,0 +1,28 @@
+.about-img {
+    height: 650px;
+    width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+    .our-team {
+        margin: 0 1rem;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .about-img {
+        height: 400px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .about-img {
+        height: 390px;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .about-img {
+        height: 320px;
+    }
+}

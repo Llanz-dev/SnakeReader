@@ -1,0 +1,24 @@
+.sign-div {
+  position: relative;
+  color: white;
+}
+
+.top-left {
+    background-color: white;
+    color: black;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: 30px;
+  left: 20px;
+}
+
+.bottom-left-1 {
+  position: absolute;
+  bottom: -7px;
+  left: 20px;
+}

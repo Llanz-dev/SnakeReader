@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block file_css %}
+<link rel="stylesheet" href="{% static 'blog/styles/about.css' %}">
+{% endblock file_css %}
+
+{% block title %}
+About
+{% endblock title %}
+
+{% block content %}
+<div class="container-md">
+    <div class="row">
+        <div class="col-md-4 align-self-center">
+            <div class="d-flex flex-md-column">
+                <p class="lead fs-2 fw-bold">About us.</p>
+                <p class="lead fs-2 fw-bold our-team">Our team.</p>
+                <p class="lead fs-2 fw-bold">Press.</p>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h1 class="display-2 text-uppercase fw-bold mb-5 my-2">About <span class="text-success">us.</span>
+            </h1>
+            <p class="fs-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum debitis ad
+                repudiandae officiis omnis adipisci consequatur nulla similique blanditiis laborum, veritatis
+                fugit rem beatae. Soluta eligendi et aperiam? Eius sapiente amet dolores repudiandae rerum
+                quibusdam animi voluptatum ratione. Quam, tempore.</p>
+            <br>
+            <p class="fs-5 mb-5">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, aperiam nesciunt autem illo ipsam
+                saepe doloremque sunt beatae, atque quas facilis eum est reprehenderit fuga dignissimos
+                obcaecati iste quam quod ipsum dicta ullam? Consectetur aliquam corporis nulla, repellendus,
+                laudantium porro esse minima tempore ratione veritatis excepturi earum possimus cumque officia.
+            </p>
+        </div>
+    </div>
+    <div class="col-12">
+        <img src="{% static 'blog/images/about2.jpeg' %}" alt="" class="about-img">
+    </div>
+    <br>
+    <div class="row my-5 d-flex justify-content-between">
+        <div class="col-xxl-6 col-xl-6 col-lg-7 col-md-6 col-sm-12 align-self-center">
+            <h2 class="display-5 fw-normal">Our work does make sense only if it is a faithful witness
+                of
+                his time.</h2>
+            <p class="fs-4">-Jean-Philippe Nuel, Director</p>
+        </div>
+        <div class="col-xl-5 col-lg-5 col-md-6 align-self-center">
+            <img src="{% static 'blog/images/about3.jpg' %}" alt="" class="img-fluid text-">
+        </div>
+    </div>
+    <br>
+    <div class="row my-3 d-flex justify-content-between">
+        <div class="col-xxl-6 col-xl-6 col-lg-7 col-md-6 col-sm-12 align-self-center">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-6">
+                    <img src="{% static 'blog/images/about4.jpg' %}" alt="" class="img-fluid mb-lg-3">
+                    <img src="{% static 'blog/images/about5.jpeg' %}" alt="" class="img-fluid my-md-3">
+                </div>
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-6 align-self-center">
+                    <img src="{% static 'blog/images/about6.jpeg' %}" alt="" class="img-fluid">
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-5 col-lg-5 col-md-6 align-self-center">
+            <h2 class="display-2 text-uppercase fw-bold mb-5">The <span class="text-success">Team.</span></h2>
+            <p class="fs-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, nemo minima
+                consequatur
+                voluptatem quo, aperiam enim assumenda, quam reprehenderit dolores nisi dicta maxime fugiat
+                reiciendis. Fuga labore dolore deserunt deleniti molestiae. Velit voluptas laborum atque minus
+                tempore! Laborum, alias architecto!</p>
+            <br>
+            <p class="fs-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima quibusdam optio
+                ipsum inventore
+                ratione nam eos fugiat obcaecati dolorem placeat iusto nihil id earum velit, quam cum provident
+                facere doloremque at corporis beatae laborum! Dicta cumque quia atque nulla provident.</p>
+            <div class="row">
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-3">
+                    <h4 class="fw-bold display-6">600</h4>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-3">
+                    <h4 class="fw-bold display-6">700</h4>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-3">
+                    <h4 class="fw-bold display-6">1.2</h4>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-3">
+                    <h4 class="fw-bold display-6">110</h4>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

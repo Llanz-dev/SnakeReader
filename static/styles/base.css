@@ -1,0 +1,37 @@
+body {
+    background-color: rgb(232, 238, 240);
+}
+
+.title-blog {
+    color: black;
+    text-decoration: none;
+}
+
+.title-blog:hover {
+    color: black;
+}
+
+p {
+    margin-bottom: .5vw;
+}
+
+.author-name {
+    opacity: .9;
+}
+
+.recent-div a {
+    color: white;
+    text-decoration: none;
+}
+
+.recent-div a:hover {
+    text-decoration: underline;
+}
+
+.footer-link {
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
