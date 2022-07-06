@@ -1,5 +1,5 @@
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from .forms import SignUpForm
 from django.shortcuts import redirect, render
 
 # Create your views here.
@@ -11,9 +11,9 @@ def sign_in(request):
 
 
 def sign_up(request):
-    form = UserCreationForm()
+    form = SignUpForm()
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
             messages.success(request, 'Sign up successfully')
             form.save()

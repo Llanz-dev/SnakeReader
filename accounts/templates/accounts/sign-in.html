@@ -14,7 +14,8 @@ Sign Up
 <div class="container-md">
     <div class="row">
         <div class="col-md-8 sign-div">
-            <img src="{% static 'accounts/images/signin.jpeg' %}" alt="Woman smiling" class="img-fluid">
+
+            <img src="{% static 'accounts/images/signin.jpeg' %}" alt="Woman smiling" class="img-fluid rounded">
             <div class="top-left rounded">
                 <h1 class="fs-1 fw-light p-1">Read a blog</h1>
             </div>
@@ -32,11 +33,18 @@ Sign Up
             </div>
         </div>
         <div class="col-md-4 align-self-center">
+            {% if messages %}            
+                {% for message in messages  %}
+                    <div class="alert alert-success" role="alert">
+                        <div class="text-center">{{ message }}</div>
+                    </div>
+                {% endfor %}                
+            {% endif %}
             <h1 class="display-2 text-center fw-bold mb-3">Sign In</h1>
             <form>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Username</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
 
                 <div class="mb-3">

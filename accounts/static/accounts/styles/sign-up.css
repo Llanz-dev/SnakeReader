@@ -1,3 +1,7 @@
+.asteriskField {
+    display: none;
+}
+
 .sign-div {
   position: relative;
   color: white;

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block file_css %}
 <link rel="stylesheet" href="{% static 'accounts/styles/sign-up.css' %}">
@@ -14,9 +15,9 @@ Sign Up
 <div class="container-md">
     <div class="row">
         <div class="col-md-8 sign-div">
-            <img src="{% static 'accounts/images/signup.jpg' %}" alt="Team picture" class="img-fluid">
+            <img src="{% static 'accounts/images/signup.jpg' %}" alt="Team picture" class="img-fluid rounded">
             <div class="top-left rounded">
-                <h1 class="fs-1 fw-light p-1">Explore ideas and trends</h1>
+                <h1 class="fs-1 fw-light p-1 expl">Explore ideas and trends</h1>
             </div>
             <div class="bottom-left rounded">
                 <p class="fw-light fst-italic p-1 bg-light text-black rounded">"
@@ -29,22 +30,18 @@ Sign Up
         <div class="col-md-4 align-self-center">
             <h1 class="display-2 text-center fw-bold mb-3">Sign Up</h1>
             <form method="POST">
+                {% csrf_token %}
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Username</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    {{ form.username|as_crispy_field }}
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    {{ form.email|as_crispy_field }}
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    {{ form.password1|as_crispy_field }}
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    {{ form.password2|as_crispy_field }}
                 </div>
                 <button type="submit" class="btn btn-success">Submit</button>
             </form>
