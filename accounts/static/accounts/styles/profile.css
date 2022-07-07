@@ -1,0 +1,24 @@
+.title-blog:hover {
+    color: black;
+}
+
+#edit-button:hover {
+    cursor: pointer;
+    background-color: rgb(218, 218, 218);
+    transition: .20s;
+}
+
+.profile-pic {
+    height:280px;
+    width:auto;
+    max-width:500px;
+}
+
+.edit-div {
+    width: fit-content;
+}
+
+.edit-text {
+    text-decoration: none;
+    color: black;
+}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block file_css %}
+<link rel="stylesheet" href="{% static 'accounts/styles/profile.css' %}">
+{% endblock file_css %}
+
+{% block title %}
+Profile
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row mt-3">
+        <div class="col-4 text-center mb-4">
+            <img src="{% static 'blog/images/profile1.jpg' %}" alt="" class="profile-pic rounded img-thumbnail">
+            <div class="mt-2">
+                <a href="" id="edit-button" class="text-decoration-none text-dark p-1 rounded">
+                    <img src="{% static 'bootstrap/icons/pencil-square.svg' %}" alt="Pencil squre icon" class="">
+                    <span>Edit</span>                    
+                </a>          
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h2>My Profile</h2>
+            <form method="POST" class="row mt-3">
+                <div class="col-6">
+                    {{form.first_name|as_crispy_field}}
+                    <br>
+                    {{form.province|as_crispy_field}}
+                </div>
+                <div class="col-6">
+                    {{form.last_name|as_crispy_field}}
+                    <br>
+                    {{form.phone|as_crispy_field}}
+                </div>
+                <div class="col-12 mt-4">
+                    {{form.email|as_crispy_field}}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
