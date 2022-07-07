@@ -63,6 +63,7 @@
                     <div class="d-flex">                        
                         {% if request.user.is_authenticated %}    
                             <a class="btn btn-outline-success" href="{% url 'accounts:sign-out' %}" role="button">Sign Out</a>
+                            <a class="btn btn-success" href="{% url 'accounts:profile' %}" role="button">Profile</a>
                         {% else %}
                             <a class="btn btn-outline-success" href="{% url 'accounts:sign-up' %}" role="button">Sign Up</a>
                             <a class="btn btn-success" href="{% url 'accounts:sign-in' %} " role="button">Sign In</a>

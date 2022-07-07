@@ -2,7 +2,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect, render
 from django.contrib.auth import login, logout
 from django.contrib import messages
-from .forms import SignUpForm
+from .forms import SignUpForm, ProfileForm
 
 
 # Create your views here.
@@ -20,7 +20,6 @@ def sign_in(request):
     context = {'form': form}
     return render(request, 'accounts/sign-in.html', context)
 
-
 def sign_up(request):
     form = SignUpForm()
     if request.method == 'POST':
@@ -36,3 +35,8 @@ def sign_up(request):
 def sign_out(request):
     logout(request)
     return redirect('accounts:sign-in')
+
+def profile(request):
+    form = ProfileForm(instance=request.user.profile)
+    context = {'form':form}
+    return render(request, 'accounts/profile.html', context)
