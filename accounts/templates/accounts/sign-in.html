@@ -35,12 +35,12 @@ Sign Up
             </div>
         </div>
         <div class="col-md-4 align-self-center">
-            {% if messages %}            
-                {% for message in messages  %}
-                    <div class="alert alert-success" role="alert">
-                        <div class="text-center">{{ message }}</div>
-                    </div>
-                {% endfor %}                
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                  {{ message }}
+                </div>
+                {% endfor %}
             {% endif %}
             <h1 class="display-2 text-center fw-bold mb-3">Sign In</h1>
             <form method="POST">

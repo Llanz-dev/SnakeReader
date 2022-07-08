@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import login, logout
 from django.contrib import messages
 from .forms import SignUpForm, ProfileForm
-
+from accounts.models import Profile
 
 # Create your views here.
 def sign_in(request):
@@ -25,8 +25,9 @@ def sign_up(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
+            user_account = form.save()
+            Profile.objects.create(user=user_account)
             messages.success(request, 'Sign up successfully')
-            form.save()
             return redirect('accounts:sign-in')
 
     context = {'form': form}
@@ -38,5 +39,16 @@ def sign_out(request):
 
 def profile(request):
     form = ProfileForm(instance=request.user.profile)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            username = form.cleaned_data.get('first_name')
+            if username == None:
+                messages.success(request, f'Your account has been updated!')                
+            else:
+                messages.success(request, f'{username}, your account has been updated!')                
+            form.save()
+            return redirect('accounts:profile')
+        
     context = {'form':form}
     return render(request, 'accounts/profile.html', context)

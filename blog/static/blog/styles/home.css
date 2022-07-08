@@ -1,0 +1,85 @@
+.title-blog {
+    color: black;
+    text-decoration: none;
+}
+
+.title-blog:hover {
+    color: black;
+}
+
+p {
+    margin-bottom: .5vw;
+}
+
+.author-name {
+    opacity: .9;
+}
+
+.recent-div a {
+    color: white;
+    text-decoration: none;
+}
+
+.recent-div a:hover {
+    text-decoration: underline;
+}
+
+.image-container {
+    position: relative;
+}
+
+.one-text h1 {
+    font-size: 3.5vw;
+}
+
+.one-text, .two-text, .three-text {
+    position: absolute;
+    color: white;
+    background-color: #198754;
+}
+
+.one-text {
+    bottom: 20px;
+    left: 16px;
+}
+
+.two-text, .three-text {
+    bottom: 10px;
+    left: 16px;
+}
+
+.two-text h1, .three-text h1 {
+    font-size: 1.5vw;
+}
+
+.two-text p, .three-text {
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+@media only screen and (max-width: 868px) {
+    .one-text h1 {
+        font-size: 4.0vw;
+    }
+    .two-text h1, .three-text h1 {
+        font-size: 2.0vw;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .one-text h1 {
+        font-size: 4.5vw;
+    }
+    .two-text h1, .three-text h1 {
+        font-size: 2.5vw;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .one-text h1 {
+        font-size: 5.0vw;
+    }
+    .two-text h1, .three-text h1 {
+        font-size: 3.0vw;
+    }
+}

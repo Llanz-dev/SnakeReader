@@ -12,34 +12,42 @@ Profile
 
 {% block content %}
 <div class="container mt-5">
-    <div class="row mt-3">
+    <form method="POST" class="row mt-3" enctype="multipart/form-data">
         <div class="col-4 text-center mb-4">
-            <img src="{% static 'blog/images/profile1.jpg' %}" alt="" class="profile-pic rounded img-thumbnail">
+            <img src="{{ user.profile.profile_picture.url }}" alt="" class="profile-pic rounded img-thumbnail">
             <div class="mt-2">
-                <a href="" id="edit-button" class="text-decoration-none text-dark p-1 rounded">
-                    <img src="{% static 'bootstrap/icons/pencil-square.svg' %}" alt="Pencil squre icon" class="">
-                    <span>Edit</span>                    
-                </a>          
+                {{ form.profile_picture }}
             </div>
         </div>
         <div class="col-md-8">
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                  {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
             <h2>My Profile</h2>
-            <form method="POST" class="row mt-3">
+            <div method="POST" class="row mt-3">
+                {% csrf_token %}
                 <div class="col-6">
-                    {{form.first_name|as_crispy_field}}
+                    {{ form.first_name|as_crispy_field }}
                     <br>
-                    {{form.province|as_crispy_field}}
+                    {{ form.province|as_crispy_field }}
                 </div>
                 <div class="col-6">
-                    {{form.last_name|as_crispy_field}}
+                    {{ form.last_name|as_crispy_field }}
                     <br>
-                    {{form.phone|as_crispy_field}}
+                    {{ form.phone|as_crispy_field }}
                 </div>
                 <div class="col-12 mt-4">
-                    {{form.email|as_crispy_field}}
+                    {{ form.email|as_crispy_field }}
                 </div>
-            </form>
+                <div class="col-6 mt-3">
+                    <button type="submit" class="btn btn-outline-success">Update</button>
+                </div>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
 {% endblock content %}
