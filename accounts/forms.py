@@ -10,7 +10,15 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         exclude = ['user']
-        fields = ['first_name', 'last_name', 'province', 'phone', 'email', 'profile_picture']
+        fields = ['first_name', 'last_name', 'province', 'phone', 'profile_picture']
+
+
+class UserUpdateForm(forms.ModelForm):
+    username = forms.CharField(label='Username')
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+        
         
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(

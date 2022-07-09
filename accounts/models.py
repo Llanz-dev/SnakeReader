@@ -8,6 +8,8 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=20, blank=True, null=True)
     province = models.CharField(max_length=30, blank=True, null=True)
     phone = models.CharField(max_length=11, blank=True, null=True)
-    email = models.EmailField(max_length=90, blank=True, null=True)
     profile_picture = models.ImageField(default='default.jpg', upload_to='profile_pics', blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.user.username} profile'
     

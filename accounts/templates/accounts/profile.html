@@ -16,7 +16,7 @@ Profile
         <div class="col-4 text-center mb-4">
             <img src="{{ user.profile.profile_picture.url }}" alt="" class="profile-pic rounded img-thumbnail">
             <div class="mt-2">
-                {{ form.profile_picture }}
+                {{ profile_form.profile_picture }}
             </div>
         </div>
         <div class="col-md-8">
@@ -31,18 +31,19 @@ Profile
             <div method="POST" class="row mt-3">
                 {% csrf_token %}
                 <div class="col-6">
-                    {{ form.first_name|as_crispy_field }}
+                    {{ user_form.username|as_crispy_field }}
                     <br>
-                    {{ form.province|as_crispy_field }}
+                    {{ profile_form.first_name|as_crispy_field }}
+                    <br>
+                    {{ profile_form.province|as_crispy_field }}
                 </div>
                 <div class="col-6">
-                    {{ form.last_name|as_crispy_field }}
+                    {{ user_form.email|as_crispy_field }}
                     <br>
-                    {{ form.phone|as_crispy_field }}
-                </div>
-                <div class="col-12 mt-4">
-                    {{ form.email|as_crispy_field }}
-                </div>
+                    {{ profile_form.last_name|as_crispy_field }}
+                    <br>
+                    {{ profile_form.phone|as_crispy_field }}
+                </div>    
                 <div class="col-6 mt-3">
                     <button type="submit" class="btn btn-outline-success">Update</button>
                 </div>

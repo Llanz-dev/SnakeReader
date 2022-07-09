@@ -1,8 +1,8 @@
+from .forms import SignUpForm, ProfileForm, UserUpdateForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect, render
 from django.contrib.auth import login, logout
 from django.contrib import messages
-from .forms import SignUpForm, ProfileForm
 from accounts.models import Profile
 
 # Create your views here.
@@ -38,17 +38,20 @@ def sign_out(request):
     return redirect('accounts:sign-in')
 
 def profile(request):
-    form = ProfileForm(instance=request.user.profile)
+    profile_form = ProfileForm(instance=request.user.profile)
+    user_form = UserUpdateForm(instance=request.user)
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
-        if form.is_valid():
-            username = form.cleaned_data.get('first_name')
+        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        if profile_form.is_valid() and user_form.is_valid():
+            username = user_form.cleaned_data.get('username')
             if username == None:
                 messages.success(request, f'Your account has been updated!')                
             else:
                 messages.success(request, f'{username}, your account has been updated!')                
-            form.save()
+            profile_form.save()
+            user_form.save()
             return redirect('accounts:profile')
         
-    context = {'form':form}
+    context = {'profile_form': profile_form, 'user_form': user_form}
     return render(request, 'accounts/profile.html', context)
