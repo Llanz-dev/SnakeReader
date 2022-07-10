@@ -23,11 +23,6 @@ def contact(request):
     return render(request, 'blog/contact.html', context)
 
 
-def profile(request):
-    context = {}
-    return render(request, 'blog/profile.html', context)
-
-
 def author(request):
     context = {}
     return render(request, 'blog/author.html', context)
