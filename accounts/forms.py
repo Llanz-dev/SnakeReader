@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from .models import Profile
 from django import forms
 
-
 class ProfileForm(forms.ModelForm):
     profile_picture = forms.ImageField(required=False, error_messages = {'invalid': ("Image files only")}, widget=forms.FileInput)
     phone = forms.CharField(max_length=11, min_length=11, required=False)
@@ -33,3 +32,5 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2', )
+
+
