@@ -45,10 +45,13 @@ Sign Up
             <form method="POST">
                 {% csrf_token %}
                 <div class="mb-3">
-                    {{ form.username|as_crispy_field }}
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" name="username">
                 </div>
                 <div class="mb-3">
-                    {{ form.password|as_crispy_field }}
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
                 </div>
                 {% if request.GET.next %}
                     <input type="hidden" name="next" value="{{ request.GET.next }}">
