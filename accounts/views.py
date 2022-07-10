@@ -1,4 +1,5 @@
 from .forms import SignUpForm, ProfileForm, UserUpdateForm
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect, render
 from django.contrib.auth import login, logout
@@ -37,6 +38,7 @@ def sign_out(request):
     logout(request)
     return redirect('accounts:sign-in')
 
+@login_required
 def profile(request):
     profile_form = ProfileForm(instance=request.user.profile)
     user_form = UserUpdateForm(instance=request.user)
