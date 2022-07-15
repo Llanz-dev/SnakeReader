@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block file_css %}
+<link rel="stylesheet" href="{% static 'blog/styles/contact.css' %}">
+{% endblock file_css %}
+
+{% block title %}
+Create article
+{% endblock title %}
+
+{% block content %}
+<div class="container-md mt-5">    
+    <h1>Create article</h1>
+    <div class="col-md-4">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ article_form.media }}
+            {{ article_form }}
+        </div>
+        <!-- <div class="mb-3">
+            {{ article_form.media }}
+        </div>
+        <div class="mb-3">
+            {{ article_form.heading_img|as_crispy_field }}
+        </div> -->
+        <div class="mb-3">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </form>
+</div>
+</div>
+{% endblock content %}

@@ -1,5 +1,9 @@
 body {
-    background-color: rgb(232, 238, 240);
+    background-color: rgb(232, 238, 240) !important;
+}
+
+.create-btn:hover {
+    color: white !important;
 }
 
 .asteriskField {

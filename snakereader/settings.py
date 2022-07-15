@@ -27,8 +27,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'blog',
-    'crispy_forms'
+    'crispy_forms',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -111,7 +115,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
@@ -119,7 +122,6 @@ STATICFILES_DIRS = [
 LOGIN_URL = 'accounts:sign-in'
 
 MEDIA_URL = '/media/'
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
