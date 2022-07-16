@@ -1,9 +1,7 @@
-from email import message
 from .forms import SignUpForm, ProfileForm, UserUpdateForm
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm
-from django.shortcuts import redirect, render
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect, render
 from django.contrib import messages
 from accounts.models import Profile
 
@@ -59,3 +57,5 @@ def profile(request):
         
     context = {'profile_form': profile_form, 'user_form': user_form}
     return render(request, 'accounts/profile.html', context)
+
+    
