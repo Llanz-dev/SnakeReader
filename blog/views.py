@@ -1,13 +1,15 @@
 from django.shortcuts import redirect, render
 from .forms import CreateArticleForm
+from accounts.forms import ProfileForm, UserUpdateForm
 from .models import Article
 from accounts.models import Profile
 # Create your views here.
 
 def home(request): 
-    article_objects = Article.objects.all()   
+    article_objects = Article.objects.all().order_by('-id')[1:2]   
+    first_query = Article.objects.all().order_by('-id')[0]
     
-    context = {'article_objects': article_objects}
+    context = {'article_objects': article_objects, 'first_query': first_query}
     return render(request, 'blog/home.html', context)
 
 
@@ -42,8 +44,10 @@ def contact(request):
     return render(request, 'blog/contact.html', context)
 
 
-def author(request):
-    context = {}
+def author(request, slug):
+    first_query = Article.objects.get(slug=slug)
+    
+    context = {'first_query': first_query}
     return render(request, 'blog/author.html', context)
 
 

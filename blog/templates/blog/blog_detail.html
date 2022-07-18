@@ -20,14 +20,14 @@ Blog
     {% endfor %}        
 </div>
 
-<div class="container-md">
+<div class="container-md mt-2">
     <div class="row">
         <div class="col-md-10">
             <h1>{{ specific_article.title }}</h1>
-            <p class="fw-bold"><a href="{% url 'blog:author' %}" class="text-decoration-none text-success">{{ specific_article.author }}</a>
+            <p class="fw-bold"><a href="{% url 'blog:author' specific_article.slug %}" class="text-decoration-none text-success">{{ specific_article.author.username }}</a>
                 |
                 {{ specific_article.date|date:'F d, o' }}</p>
-            <img src="{% static 'blog/images/blog.jpg' %}" alt="blog-image" class="img-fluid">
+            <img src="{{ specific_article.heading_img.url }}" alt="blog-image" class="img-fluid">
             <p class="fst-italic mt-3 fs-5">The global COVID-19 pandemic has resulted in soaring infection
                 rates,
                 widespread
@@ -36,66 +36,9 @@ Blog
                 momentum
                 could jeopardize
                 economic recovery prospects for years to come.</p>
-            <p class="lh-base fs-4">The term “financial crisis” has long been associated with dramas such as
-                bank runs
-                and
-                asset-price crashes. Charles
-                Kindleberger’s classic books The World in Depression, 1929-1939 and Manias, Panics and Crashes,
-                and my own work with
-                Kenneth Rogoff, This Time Is Different, document scores of these episodes. In recent years, the
-                term “Lehman moment” has
-                stood out as a marker of the 2007-09 global financial crisis and even inspired a Broadway show.
-                <br>
-                But some financial crises do not involve the drama of Lehman moments. Asset quality can
-                deteriorate significantly as
-                economic downturns persist, especially when firms and households are highly leveraged. Moreover,
-                years of bank lending
-                to unproductive private firms or state-owned enterprises (the latter is not uncommon in some
-                developing countries) take
-                a cumulative toll on balance sheets.
-                <br>
-                Although these crises may not always include panics and runs, they still impose multiple costs.
-                Bank restructuring and
-                recapitalization to restore solvency can be expensive for governments and taxpayers, and new
-                lending can remain
-                depressed, slowing economic activity. The credit crunch also has distributional effects, because
-                it hits small and
-                medium-size businesses and lower-income households more acutely.
-                <br>
-                To be sure, the COVID-19 pandemic continues to deliver many moments of unwanted drama, including
-                soaring infection
-                rates, widespread lockdowns, record-shattering declines in output, and spiking poverty. But, in
-                addition to these
-                trends, a quieter crisis is gaining momentum in the financial sector. Even without a Lehman
-                moment, it could jeopardize
-                prospects for economic recovery for years to come.
-                <br>
-                Specifically, financial institutions around the world will continue to face a marked rise in
-                non-performing loans (NPLs)
-                for some time. The COVID-19 crisis is also regressive, disproportionately hitting low-income
-                households and smaller
-                firms that have fewer assets to buffer them against insolvency.
-                <br>
-                Since the onset of the pandemic, governments have relied on expansionary monetary and fiscal
-                policies to offset the
-                steep declines in economic activity associated with broad-based shutdowns and social-distancing
-                measures. Wealthier
-                countries have had a decided advantage in their ability to respond, although a surge in lending
-                by multilateral
-                institutions has also helped to finance emerging and developing economies’ response to the
-                health emergency.
-                <br>
-                Unlike in the 2007-09 crisis (or most previous crises, for that matter), banks have supported
-                macroeconomic stimulus
-                with a variety of temporary loan moratoria, as the International Monetary Fund has documented in
-                its Policy Tracker.
-                <br>
-                These measures have provided some respite for households facing loss of employment and a decline
-                in income, as well as
-                for businesses struggling to survive lockdowns and general disruptions to normal activity
-                (tourism-linked sectors stand
-                out starkly in this regard).
-            </p>
+            <div class="lh-base fs-4">
+                {{ specific_article.body| safe | linebreaks }}
+            </div>
         </div>
     </div>
 </div>
@@ -104,13 +47,17 @@ Blog
 <div class="container-fluid author-background-color p-5 mt-5">
     <div class="container-md">
         <div class="row d-flex">
-            <div class="col-xl-2 col-lg-4 col-md-4 mb-xl-0 mb-lg-0 mb-md-0 mb-sm-5 blog-info-div">
-                <img src="{{ specific_article.author.profile.profile_picture.url }}" alt="author-image" class="user-pic rounded-circle">
+            <div class="col-xl-2 col-lg-4 col-md-4 mb-xl-0 mb-lg-0 mb-md-0 mb-sm-5 blog-info-div">                
+                {% if specific_article.author.profile.profile_picture %}
+                    <img src="{{ specific_article.author.profile.profile_picture.url }}" alt="author-image" class="user-pic rounded-circle">                    
+                {% else %}
+                    <img src="{% static 'images/default.jpg' %}" alt="Default image">
+                {% endif %}                    
             </div>
             <div class="col-xl-10 col-lg-8 col-md-8 flex-fill">
-                <p class="fw-bold"><a href="{% url 'blog:author' %}" class="text-decoration-none text-success">{{specific_article.author}}</a> </p>
+                <p class="fw-bold"><a href="{% url 'blog:author' specific_article.slug %}" class="text-decoration-none text-success">{{specific_article.author}}</a> </p>
                 <p>Senior Vice President and Chief Economist of the World Bank Group</p>
-                <a href="{% url 'blog:author' %}" class="btn btn-success">MORE BLOGS BY CARMEN</a>
+                <a href="{% url 'blog:author' specific_article.slug %}" class="btn btn-success">MORE BLOGS BY CARMEN</a>
             </div>
         </div>
     </div>

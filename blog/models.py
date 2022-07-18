@@ -9,7 +9,7 @@ from django.db import models
 class Article(models.Model):
     title = models.CharField(max_length=50)
     slug = models.SlugField(unique=True)
-    # body = RichTextField(blank=True, null=True)
+    intro = models.TextField(blank=True, null=True)
     body = RichTextUploadingField(blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True)
     heading_img = models.ImageField(blank=True, upload_to='article_heading', default='article_heading/default.jpg')

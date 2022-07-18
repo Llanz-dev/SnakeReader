@@ -12,24 +12,20 @@ Home
 {% endblock title %}
 
 
-
 {% block content %}
 <div class="container-md recent-div mt-3"> 
     <h2>Recent posts</h2>
     <div class="row mb-lg-3 mb-md-2 mb-sm-2">
-        
-        <div class="col-lg-7 d-flex flex-column justify-content-between">            
-            {% for obj in article_objects %}
+        <div class="col-lg-7 d-flex flex-column justify-content-between">
             <div class="image-container">
-                <img src="{{ obj.heading_img.url }}" alt="recent blog image"
-                    class="img-fluid rounded mt-4">
+                <img src="{{ first_query.heading_img.url }}" alt="Heading image" class="img-fluid rounded mt-4">     
                 <div class="one-text rounded px-2">
-                    <h1><a href="{% url 'blog:blog_detail' obj.slug %}">{{ obj.title }}</a></h1>
-                    <p><a href="{% url 'accounts:profile' %}" class="author-name">{{ obj.author }}</a></p>
+                    <h1><a href="{% url 'blog:blog_detail' first_query.slug %}">{{ first_query.title }}</a></h1>
+                    <p><a href="{% url 'blog:author' first_query.slug %}" class="author-name">{{ first_query.author }}</a></p>
                 </div>
-            </div>
-            {% endfor %}                
-        
+           </div>
+
+        </div>
     </div>
 </div> 
 {% endblock content %}

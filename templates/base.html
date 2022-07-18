@@ -55,10 +55,13 @@
                                 <li><a class="dropdown-item" href="#">Travel</a></li>
                                 <li><a class="dropdown-item" href="#">Music</a></li>
                             </ul>
-                        </li>
+                        </li>                        
+                        {% if request.user.is_authenticated %}                            
                         <li class="nav-item">
-                            <a class="nav-link btn btn-outline-success create-btn" href="{% url 'blog:create_article' %}">Create</a>
+                            <a class="btn btn-outline-success create-btn" href="{% url 'blog:create_article' %}">Create</a>                            
                         </li>
+                        {% endif %}
+
                     </ul>
                     <div class="d-flex">                        
                         {% if request.user.is_authenticated %}    
