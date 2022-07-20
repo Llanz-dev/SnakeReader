@@ -44,6 +44,11 @@ p {
     padding-top: .5vw;
 }
 
+.one-pic {
+    height: 500px;
+    width: 700px;
+}
+
 .two-text, .three-text {
     bottom: 10px;
     left: 16px;
