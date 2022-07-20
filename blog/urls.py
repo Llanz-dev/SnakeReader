@@ -1,3 +1,4 @@
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path
 from . import views
 
@@ -11,3 +12,5 @@ urlpatterns = [
     path('author/<slug:slug>/', views.author, name='author'),
     path('specific_category/', views.specific_category, name='specific_category'),
 ]
+
+urlpatterns += staticfiles_urlpatterns()

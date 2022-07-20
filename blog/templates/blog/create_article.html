@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load widget_tweaks %}
 
 {% block file_css %}
 <link rel="stylesheet" href="{% static 'blog/styles/contact.css' %}">
@@ -13,12 +14,19 @@ Create article
 {% block content %}
 <div class="container-md mt-5">    
     <h1>Create article</h1>
-    <div class="col-md-4">
+    <div class="col-md-12">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="mb-3">
-            {{ article_form.media }}
-            {{ article_form }}
+            <div class="col-md-12">
+                {{ article_form.media }}
+            </div>
+            {% for field in article_form %}
+            <div class='col-md-7'>
+              {{ field|as_crispy_field }}
+            </div>
+        {% endfor %}
+
         </div>
         <div class="mb-3">
             <button type="submit" class="btn btn-success">Submit</button>

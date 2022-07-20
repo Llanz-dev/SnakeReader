@@ -41,6 +41,7 @@ p {
 .one-text {
     bottom: 20px;
     left: 16px;
+    padding-top: .5vw;
 }
 
 .two-text, .three-text {
@@ -55,6 +56,11 @@ p {
 .two-text p, .three-text {
     font-size: 12px;
     letter-spacing: 1px;
+}
+
+.second-pic {
+    width: 500px;
+    height: 250px;
 }
 
 @media only screen and (max-width: 868px) {

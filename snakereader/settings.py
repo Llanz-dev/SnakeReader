@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'ckeditor',
     'ckeditor_uploader',
+    'widget_tweaks',
 ]
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
@@ -113,10 +114,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
-    BASE_DIR / "static"
+    BASE_DIR / "static/"
 ]
 
 LOGIN_URL = 'accounts:sign-in'

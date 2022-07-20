@@ -28,14 +28,10 @@ Blog
                 |
                 {{ specific_article.date|date:'F d, o' }}</p>
             <img src="{{ specific_article.heading_img.url }}" alt="blog-image" class="img-fluid">
-            <p class="fst-italic mt-3 fs-5">The global COVID-19 pandemic has resulted in soaring infection
-                rates,
-                widespread
-                lockdowns, record-shattering declines
-                in output, and spiking poverty. But, in addition to these trends, a quieter crisis now gaining
-                momentum
-                could jeopardize
-                economic recovery prospects for years to come.</p>
+            {% if specific_article.intro %}
+                <p class="fst-italic mt-3 fs-5">{{ specific_article.intro }}</p>
+            {% endif %}
+
             <div class="lh-base fs-4">
                 {{ specific_article.body| safe | linebreaks }}
             </div>
@@ -49,9 +45,9 @@ Blog
         <div class="row d-flex">
             <div class="col-xl-2 col-lg-4 col-md-4 mb-xl-0 mb-lg-0 mb-md-0 mb-sm-5 blog-info-div">                
                 {% if specific_article.author.profile.profile_picture %}
-                    <img src="{{ specific_article.author.profile.profile_picture.url }}" alt="author-image" class="user-pic rounded-circle">                    
+                    <img src="{{ specific_article.author.profile.profile_picture.url }}" alt="Author image" class="user-pic rounded-circle">                    
                 {% else %}
-                    <img src="{% static 'images/default.jpg' %}" alt="Default image">
+                    <img src="{% static 'images/default.jpg' %}" alt="Default image" class="user-pic rounded-circle">
                 {% endif %}                    
             </div>
             <div class="col-xl-10 col-lg-8 col-md-8 flex-fill">

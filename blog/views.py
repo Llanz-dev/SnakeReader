@@ -8,8 +8,15 @@ from accounts.models import Profile
 def home(request): 
     article_objects = Article.objects.all().order_by('-id')[1:2]   
     first_query = Article.objects.all().order_by('-id')[0]
+    first_second = Article.objects.all().order_by('-id')[1:3]
+    third_last = Article.objects.all().order_by('-id')[3:5]
     
-    context = {'article_objects': article_objects, 'first_query': first_query}
+    context = {
+                    'article_objects': article_objects, 
+                    'first_query': first_query,
+                    'first_second': first_second,
+                    'third_last': third_last
+                }
     return render(request, 'blog/home.html', context)
 
 

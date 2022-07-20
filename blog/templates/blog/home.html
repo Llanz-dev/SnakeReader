@@ -24,7 +24,28 @@ Home
                     <p><a href="{% url 'blog:author' first_query.slug %}" class="author-name">{{ first_query.author }}</a></p>
                 </div>
            </div>
-
+           <div class="row">            
+            {% for data_two in first_second %}                                
+                <div class="col-6 image-container">
+                  <img src="{{ data_two.heading_img.url }}" alt="" class="img-fluid rounded mt-4 second-pic">
+                  <div class="two-text one-text rounded px-2">
+                    <h1><a href="{% url 'blog:blog_detail' data_two.slug %}">{{ data_two.title }}</a></h1>
+                    <p><a href="" class="author-name">{{ data_two.author }}</a></p>
+                  </div>
+                </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="col-lg-5 d-flex flex-lg-column justify-content-between">
+          {% for data_last in third_last %}                                
+            <div class="col-12 image-container">
+              <img src="{{ data_last.heading_img.url }}" alt="" class="img-fluid rounded mt-4">
+              <div class="three-text rounded px-2">
+                <h1><a href="{% url 'blog:blog_detail' data_last.slug %}">{{ data_last.title }}</a></h1>
+                <p><a href="{% url 'blog:author' data_last.slug %}" class="author-name">{{ data_last.author }}</a></p>
+              </div>
+            </div>
+          {% endfor %}
         </div>
     </div>
 </div> 
