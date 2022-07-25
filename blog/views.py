@@ -7,21 +7,32 @@ from accounts.models import Profile
 # Create your views here.
 
 def home(request): 
-    article_objects = Article.objects.all().order_by('-id')   
-    
-    for data in article_objects:
-        if not data[0]:
-            print('empty')
-            sys.exit()            
-        print('data:', data)
-    print('Article objects', article_objects)
+    # article_objects = Article.objects.all().order_by('-id')[0:5]   
+    # length_article = len(article_objects)
+    # max_length = 5
+    # blank_posts = max_length - length_article   
+    # for data in range(0, length_article):  
+    #     print('data:', article_objects[data])
+    # for blank in range(blank_posts):
+    #     print('blank:', blank)
+    # print('Article objects:', article_objects)
+    # print('Length article:', length_article)
         
     try:
         first_query = Article.objects.all().order_by('-id')[0]
     except:
         first_query = None
         
-    second_third = Article.objects.all().order_by('-id')[1:3]    
+    second_third = Article.objects.all().order_by('-id')[1:3]  
+    two_article = len(second_third)
+    max_two = 2
+    blank_posts = max_two - two_article   
+    for data in range(0, two_article):  
+        print('data:', second_third[data])
+    for blank in range(blank_posts):
+        print('blank:', blank)
+    print('Article objects:', second_third)
+    print('Length article:', two_article)
       
     two_list = len(second_third)
     if two_list < 1:
