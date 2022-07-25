@@ -1,3 +1,4 @@
+import sys
 from django.shortcuts import redirect, render
 from .forms import CreateArticleForm
 from accounts.forms import ProfileForm, UserUpdateForm
@@ -6,16 +7,50 @@ from accounts.models import Profile
 # Create your views here.
 
 def home(request): 
-    article_objects = Article.objects.all().order_by('-id')[1:2]   
-    first_query = Article.objects.all().order_by('-id')[0]
-    first_second = Article.objects.all().order_by('-id')[1:3]
-    third_last = Article.objects.all().order_by('-id')[3:5]
+    article_objects = Article.objects.all().order_by('-id')   
+    
+    for data in article_objects:
+        if not data[0]:
+            print('empty')
+            sys.exit()            
+        print('data:', data)
+    print('Article objects', article_objects)
+        
+    try:
+        first_query = Article.objects.all().order_by('-id')[0]
+    except:
+        first_query = None
+        
+    second_third = Article.objects.all().order_by('-id')[1:3]    
+      
+    two_list = len(second_third)
+    if two_list < 1:
+        two_list = 0
+    elif two_list == 1:
+        second_third = Article.objects.all().order_by('-id')[1:2]                            
+        two_list = 1                     
+    else:
+        second_third = Article.objects.all().order_by('-id')[1:3]                                    
+        two_list = 2      
+
+    third_fourth = Article.objects.all().order_by('-id')[3:5]    
+    three_list = len(third_fourth)
+
+    if three_list < 1:
+        three_list = 0
+    elif three_list == 1:
+        third_fourth = Article.objects.all().order_by('-id')[3:4]                            
+        three_list = 1           
+    else:
+        third_fourth = Article.objects.all().order_by('-id')[3:5]                                    
+        three_list = 2 
     
     context = {
-                    'article_objects': article_objects, 
                     'first_query': first_query,
-                    'first_second': first_second,
-                    'third_last': third_last
+                    'two_list': two_list,             
+                    'second_third': second_third,
+                    'third_fourth': third_fourth,               
+                    'three_list': three_list
                 }
     return render(request, 'blog/home.html', context)
 

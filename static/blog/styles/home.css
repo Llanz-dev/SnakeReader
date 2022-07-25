@@ -1,3 +1,14 @@
+.remove-gutter {
+    --bs-gutter-x: 0;
+}
+
+.none-post-side {
+    margin: 100%;
+}
+
+.none-post {
+    margin: 60%;
+}
 .title-blog {
     color: black;
     text-decoration: none;

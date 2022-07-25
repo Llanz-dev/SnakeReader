@@ -1,3 +1,3 @@
 Still working on... 
 
-home page must redesign and limit the queryset. Also, the design of create article and the integration of data
+blog views logic to template 
