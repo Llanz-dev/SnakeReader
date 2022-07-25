@@ -14,17 +14,20 @@ Author
 <div class="container-md mt-5">
     <div class="row">
         <div class="col-lg-2">
-            <img src="{% static 'blog/images/carmen_reinhart.jpg' %}" alt="author-image"
+            {% if specific_article.author.profile.profile_picture.isempty %}
+            <img src="{{ first_query.author.profile.profile_picture.url }}" alt="author-image"
                 class="img-fluid rounded-circle">
+            {% else %}
+                <img src="{% static 'images/default.jpg' %}" alt="Default image" class="img-fluid rounded-circle">
+            {% endif %}
         </div>
         <div class="col-lg-10 align-self-center">
-            <h1 class="lh-base mt-2
-                            ">Carmen Reinhart</h1>
+            <h1 class="lh-base mt-2">{{ first_query.author }}</h1>
             <p>Senior Vice President and Chief Economist of the World Bank Group</p>
         </div>
     </div>
     <div class="col-md-10">
-        <p class="lh-base mt-md-5 fs-4">
+        <div class="lh-base mt-md-5 fs-4">
             Carmen M. Reinhart is the Senior Vice President and Chief Economist of the World Bank Group.
             Assuming
             this role on June
@@ -78,7 +81,7 @@ Author
             holds
             a Ph.D. from
             Columbia University.
-        </p>
+        </div>
     </div>
 </div>
 {% endblock content %}

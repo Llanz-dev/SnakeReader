@@ -1,0 +1,13 @@
+.author-background-color {
+    background-color: #F8F9F8;
+}
+
+.user-pic {
+    width: 200px;
+}
+
+@media only screen and (max-width: 575px) {
+    .blog-info-div {
+        margin-bottom: 2rem;
+    }
+}

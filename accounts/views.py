@@ -1,24 +1,24 @@
 from .forms import SignUpForm, ProfileForm, UserUpdateForm
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import redirect, render
-from django.contrib.auth import login, logout
 from django.contrib import messages
 from accounts.models import Profile
 
 # Create your views here.
 def sign_in(request):
-    form = AuthenticationForm()
     if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
-            user_account = form.get_user()
-            login(request, user_account)
-            if 'next' in request.POST:
-                return redirect(request.POST.get('next'))
-            return redirect('blog:home')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
         
-    context = {'form': form}
+        if user is not None:
+            login(request, user)
+            return redirect('blog:home')
+        else:
+            messages.info(request, 'username or password is incorrect')
+            
+    context = {}
     return render(request, 'accounts/sign-in.html', context)
 
 def sign_up(request):
@@ -57,3 +57,4 @@ def profile(request):
         
     context = {'profile_form': profile_form, 'user_form': user_form}
     return render(request, 'accounts/profile.html', context)
+    

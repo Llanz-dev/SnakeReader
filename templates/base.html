@@ -40,9 +40,6 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{% url 'blog:contact' %}">Contact</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"></a>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -58,7 +55,13 @@
                                 <li><a class="dropdown-item" href="#">Travel</a></li>
                                 <li><a class="dropdown-item" href="#">Music</a></li>
                             </ul>
+                        </li>                        
+                        {% if request.user.is_authenticated %}                            
+                        <li class="nav-item">
+                            <a class="btn btn-outline-success create-btn" href="{% url 'blog:create_article' %}">Create</a>                            
                         </li>
+                        {% endif %}
+
                     </ul>
                     <div class="d-flex">                        
                         {% if request.user.is_authenticated %}    

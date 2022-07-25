@@ -14,7 +14,11 @@ Profile
 <div class="container mt-5">
     <form method="POST" class="row mt-3" enctype="multipart/form-data">
         <div class="col-4 text-center mb-4">
-            <img src="{{ user.profile.profile_picture.url }}" alt="" class="profile-pic rounded img-thumbnail">
+            {% if request.user.profile.profile_picture %}
+                <img src="{{ request.user.profile.profile_picture.url }}" alt="" class="profile-pic rounded img-thumbnail">
+            {% else %}
+                <img src="{% static 'accounts/images/default.jpg' %}" alt="default profile pic" class="profile-pic rounded img-thumbnail"/>
+            {% endif %}
             <div class="mt-2">
                 {{ profile_form.profile_picture }}
             </div>
