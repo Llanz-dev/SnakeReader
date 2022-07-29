@@ -46,14 +46,10 @@
                                 Categories
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Health</a></li>
-                                <li><a class="dropdown-item" href="#">Sports</a></li>
-                                <li><a class="dropdown-item" href="#">Finance</a></li>
-                                <li><a class="dropdown-item" href="{% url 'blog:specific_category' %}">Technology</a>
-                                </li>
-                                <li><a class="dropdown-item" href="#">Fashion</a></li>
-                                <li><a class="dropdown-item" href="#">Travel</a></li>
-                                <li><a class="dropdown-item" href="#">Music</a></li>
+                                
+                             {% for data in article %}
+                                    <li><a class="dropdown-item" href="{% url 'blog:specific_category' data %}">{{ data|title }}</a></li>                                    
+                                {% endfor %}                             
                             </ul>
                         </li>                        
                         {% if request.user.is_authenticated %}                            

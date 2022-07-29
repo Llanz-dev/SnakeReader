@@ -1,14 +1,22 @@
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.template.defaultfilters import slugify
-from django.core.files.base import ContentFile
 from django.contrib.auth.models import User
-from ckeditor.fields import RichTextField
 from django.db import models
-from PIL import Image
+
+CATEGORIES_POSTS = (
+    ('health','HEALTH'),
+    ('sports', 'SPORTS'),
+    ('finance','FINANCE'),
+    ('technology','TECHNOLOGY'),
+    ('fashion','FASHION'),
+    ('travel','TRAVEL'),
+    ('music','MUSIC'),
+)
 
 # Create your models here.
 class Article(models.Model):
     title = models.CharField(max_length=50)
+    category_choices = models.CharField(max_length=10, choices=CATEGORIES_POSTS, default='health')
     slug = models.SlugField(unique=True)
     intro = models.TextField(blank=False, null=True)
     body = RichTextUploadingField(blank=False, null=True)

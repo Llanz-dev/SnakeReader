@@ -1,4 +1,5 @@
 import sys
+from unicodedata import category
 from django.shortcuts import redirect, render
 from .forms import CreateArticleForm
 from accounts.forms import ProfileForm, UserUpdateForm
@@ -14,9 +15,9 @@ def home(request):
     max_length = 5
     blank_posts_left = max_length - length_article_left   
     blank_posts_right = max_length - length_article_right   
-     
-    
+    article = ['health', 'sports', 'finance', 'technology', 'fashion', 'travel', 'music']
     context = {
+                    'article': article,
                     'article_objects_left': article_objects_left,
                     'article_objects_right': article_objects_right,
                     'blank_posts_left': range(blank_posts_left),
@@ -63,6 +64,9 @@ def author(request, slug):
     return render(request, 'blog/author.html', context)
 
 
-def specific_category(request):
-    context = {}
+def specific_category(request, slug):
+    category = Article.objects.filter(category_choices=slug)
+    article = ['health', 'sports', 'finance', 'technology', 'fashion', 'travel', 'music']
+                        
+    context = {'category': category, 'slug': slug, 'article': article}
     return render(request, 'blog/specific_category.html', context)

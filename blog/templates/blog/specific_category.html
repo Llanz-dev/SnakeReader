@@ -14,62 +14,26 @@ Category
 
 <div class="container-fluid bg-success">
     <div class="container-md text-center text-light py-4">
-        <h1>Technology Development</h1>
-        <h3>Making technology work for everyone</h3>
+        <h1>{{ slug|title }} Development</h1>
+        <h3>Making {{ slug }} work for everyone</h3>
     </div>
 </div>
 
 <div class="container-md mt-5">
     <div class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="col">
-            <div class="card">
-                <img src="{% static 'blog/images/tech1.png' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="">Mission Billion solicits innovative solutions to empower
-                            the world’s
-                            invisible billion</a></h5>
-                    <p class="card-text"><small>MAY 11, 2022 | <a href="" class="footer-link text-success">SETH
-                                AYERSFAHER</a>
-                        </small>
-                    </p>
+        {% for data in category %}
+            <div class="col">
+                <div class="card">
+                    <img src="{{ data.heading_img.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{% url 'blog:blog_detail' data.slug %}">{{ data.title }}</a></h5>
+                        <p class="card-text"><small>{{ data.date|date:'F d, o' }} | <a href="{% url 'blog:author' data.slug %}" class="footer-link text-success">
+                                    {{ data.author }}</a></small></p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="{% static 'blog/images/tech2.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="">De-risking digital investments to support cyber resilient
-                            development</a>
-                    </h5>
-                    <p class="card-text"><small>MAY 04, 2022 | <a href="" class="footer-link text-success">FRANCESCA
-                                SPIDALIERI</a></small></p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="{% static 'blog/images/tech3.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="">Top 5 tips for achieving meaningful digital connectivity
-                            that drives
-                            resilient, inclusive growth</a></h5>
-                    <p class="card-text"><small>APRIL 25, 2022 | <a href="" class="footer-link text-success">RICCARDO
-                                PULITI</a></small></p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="{% static 'blog/images/tech4.png' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="">The nexus of green and digital: An opportunity or a
-                            challenge?</a></h5>
-                    <p class="card-text"><small>APRIL 28, 2022 | <a href="" class="footer-link text-success">ZAKI
-                                KHOURYJISOO LEE</a></small></p>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
+            
     </div>
 </div>
 
