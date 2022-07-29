@@ -7,61 +7,20 @@ from accounts.models import Profile
 # Create your views here.
 
 def home(request): 
-    # article_objects = Article.objects.all().order_by('-id')[0:5]   
-    # length_article = len(article_objects)
-    # max_length = 5
-    # blank_posts = max_length - length_article   
-    # for data in range(0, length_article):  
-    #     print('data:', article_objects[data])
-    # for blank in range(blank_posts):
-    #     print('blank:', blank)
-    # print('Article objects:', article_objects)
-    # print('Length article:', length_article)
-        
-    try:
-        first_query = Article.objects.all().order_by('-id')[0]
-    except:
-        first_query = None
-        
-    second_third = Article.objects.all().order_by('-id')[1:3]  
-    two_article = len(second_third)
-    max_two = 2
-    blank_posts = max_two - two_article   
-    for data in range(0, two_article):  
-        print('data:', second_third[data])
-    for blank in range(blank_posts):
-        print('blank:', blank)
-    print('Article objects:', second_third)
-    print('Length article:', two_article)
-      
-    two_list = len(second_third)
-    if two_list < 1:
-        two_list = 0
-    elif two_list == 1:
-        second_third = Article.objects.all().order_by('-id')[1:2]                            
-        two_list = 1                     
-    else:
-        second_third = Article.objects.all().order_by('-id')[1:3]                                    
-        two_list = 2      
-
-    third_fourth = Article.objects.all().order_by('-id')[3:5]    
-    three_list = len(third_fourth)
-
-    if three_list < 1:
-        three_list = 0
-    elif three_list == 1:
-        third_fourth = Article.objects.all().order_by('-id')[3:4]                            
-        three_list = 1           
-    else:
-        third_fourth = Article.objects.all().order_by('-id')[3:5]                                    
-        three_list = 2 
+    article_objects_left = Article.objects.all().order_by('-id')[0:5]   
+    article_objects_right = Article.objects.all().order_by('-id')[5:11]   
+    length_article_left = len(article_objects_left)
+    length_article_right = len(article_objects_right)
+    max_length = 5
+    blank_posts_left = max_length - length_article_left   
+    blank_posts_right = max_length - length_article_right   
+     
     
     context = {
-                    'first_query': first_query,
-                    'two_list': two_list,             
-                    'second_third': second_third,
-                    'third_fourth': third_fourth,               
-                    'three_list': three_list
+                    'article_objects_left': article_objects_left,
+                    'article_objects_right': article_objects_right,
+                    'blank_posts_left': range(blank_posts_left),
+                    'blank_posts_right': range(blank_posts_right),
                 }
     return render(request, 'blog/home.html', context)
 

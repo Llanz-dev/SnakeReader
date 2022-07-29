@@ -1,8 +1,10 @@
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.template.defaultfilters import slugify
+from django.core.files.base import ContentFile
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 from django.db import models
+from PIL import Image
 
 # Create your models here.
 class Article(models.Model):
@@ -20,4 +22,4 @@ class Article(models.Model):
     def save(self, *args, **kwargs):
         if not self.id:
             self.slug = slugify(self.title)
-        super(Article, self).save(*args, **kwargs)
+        super(Article, self).save(*args, **kwargs)    
