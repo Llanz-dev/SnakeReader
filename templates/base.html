@@ -45,11 +45,12 @@
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Categories
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                
-                             {% for data in article %}
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">                
+                                {% with 'health sports finance technology fashion travel music' as list %}
+                                  {% for data in list.split %}
                                     <li><a class="dropdown-item" href="{% url 'blog:specific_category' data %}">{{ data|title }}</a></li>                                    
-                                {% endfor %}                             
+                                  {% endfor %}
+                                {% endwith %}                
                             </ul>
                         </li>                        
                         {% if request.user.is_authenticated %}                            

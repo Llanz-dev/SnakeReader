@@ -15,9 +15,8 @@ def home(request):
     max_length = 5
     blank_posts_left = max_length - length_article_left   
     blank_posts_right = max_length - length_article_right   
-    article = ['health', 'sports', 'finance', 'technology', 'fashion', 'travel', 'music']
+    
     context = {
-                    'article': article,
                     'article_objects_left': article_objects_left,
                     'article_objects_right': article_objects_right,
                     'blank_posts_left': range(blank_posts_left),
@@ -66,7 +65,9 @@ def author(request, slug):
 
 def specific_category(request, slug):
     category = Article.objects.filter(category_choices=slug)
-    article = ['health', 'sports', 'finance', 'technology', 'fashion', 'travel', 'music']
-                        
-    context = {'category': category, 'slug': slug, 'article': article}
+    no_category = False
+    if not len(category):
+        no_category = True
+        
+    context = {'category': category, 'slug': slug, 'no_category': no_category}
     return render(request, 'blog/specific_category.html', context)

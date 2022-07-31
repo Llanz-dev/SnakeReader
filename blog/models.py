@@ -15,7 +15,7 @@ CATEGORIES_POSTS = (
 
 # Create your models here.
 class Article(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=70)
     category_choices = models.CharField(max_length=10, choices=CATEGORIES_POSTS, default='health')
     slug = models.SlugField(unique=True)
     intro = models.TextField(blank=False, null=True)
