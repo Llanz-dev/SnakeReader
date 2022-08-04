@@ -15,6 +15,7 @@ CATEGORIES_POSTS = (
 
 # Create your models here.
 class Article(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)    
     title = models.CharField(max_length=70)
     category_choices = models.CharField(max_length=10, choices=CATEGORIES_POSTS, default='health')
     slug = models.SlugField(unique=True)
@@ -22,7 +23,6 @@ class Article(models.Model):
     body = RichTextUploadingField(blank=False, null=True)
     date = models.DateTimeField(auto_now_add=True)
     heading_img = models.ImageField(blank=True, upload_to='article_heading', default='article_heading/default.jpg')
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title

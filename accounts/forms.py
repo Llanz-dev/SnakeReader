@@ -9,7 +9,7 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         exclude = ['user']
-        fields = ['first_name', 'last_name', 'province', 'phone', 'profile_picture']
+        fields = ['province', 'phone', 'profile_picture']
 
 
 class UserUpdateForm(forms.ModelForm):

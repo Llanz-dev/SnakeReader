@@ -41,8 +41,11 @@ def create_article(request):
 
 def blog_detail(request, slug):
     specific_article = Article.objects.get(slug=slug)
+    profile_author = Profile.objects.get(user=specific_article.author)
+    print('Article author:', specific_article.author)
+    print('Profile author:', profile_author.user)
     
-    context = {'specific_article': specific_article}
+    context = {'specific_article': specific_article, 'profile_author': profile_author}    
     return render(request, 'blog/blog_detail.html', context)
 
 
@@ -56,10 +59,10 @@ def contact(request):
     return render(request, 'blog/contact.html', context)
 
 
-def author(request, slug):
-    first_query = Article.objects.get(slug=slug)
+def author(request, user_slug):
+    author_info = Profile.objects.get(user_slug=user_slug)
     
-    context = {'first_query': first_query}
+    context = {'author_info': author_info}
     return render(request, 'blog/author.html', context)
 
 

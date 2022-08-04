@@ -24,7 +24,7 @@ Blog
     <div class="row">
         <div class="col-md-10">
             <h1>{{ specific_article.title }}</h1>
-            <p class="fw-bold"><a href="{% url 'blog:author' specific_article.slug %}" class="text-decoration-none text-success">{{ specific_article.author.username }}</a>
+            <p class="fw-bold"><a href="{% url 'blog:author' profile_author.user_slug %}" class="text-decoration-none text-success">{{ specific_article.author.username }}</a>
                 |
                 {{ specific_article.date|date:'F d, o' }}</p>
             <img src="{{ specific_article.heading_img.url }}" alt="blog-image" class="img-fluid">
@@ -44,12 +44,12 @@ Blog
     <div class="container-md">
         <div class="row d-flex">
             <div class="col-xl-2 col-lg-4 col-md-4 mb-xl-0 mb-lg-0 mb-md-0 mb-sm-5 blog-info-div">                
-                    <img src="{{ specific_article.author.profile.profile_picture.url }}" alt="Author image" class="user-pic rounded">                                                 
+                    <img src="{{ profile_author.profile_picture.url }}" alt="Author image" class="user-pic rounded">                                                 
             </div>
             <div class="col-xl-10 col-lg-8 col-md-8 flex-fill">
-                <p class="fw-bold"><a href="{% url 'blog:author' specific_article.slug %}" class="text-decoration-none text-success">{{ specific_article.author }}</a> </p>
+                <p class="fw-bold"><a href="{% url 'blog:author' profile_author.user_slug %}" class="text-decoration-none text-success">{{ profile_author.user.username }}</a> </p>
                 <p>Senior Vice President and Chief Economist of the World Bank Group</p>
-                <a href="{% url 'blog:author' specific_article.slug %}" class="btn btn-success">MORE BLOGS BY {{ specific_article.author|upper }}</a>
+                <a href="{% url 'blog:author' profile_author.user_slug %}" class="btn btn-success">MORE BLOGS BY {{ profile_author.user.username|upper }}</a>
             </div>
         </div>
     </div>
