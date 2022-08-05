@@ -1,5 +1,3 @@
-import sys
-from unicodedata import category
 from django.shortcuts import redirect, render
 from .forms import CreateArticleForm
 from accounts.forms import ProfileForm, UserUpdateForm
@@ -14,8 +12,8 @@ def home(request):
     length_article_right = len(article_objects_right)
     max_length = 5
     blank_posts_left = max_length - length_article_left   
-    blank_posts_right = max_length - length_article_right   
-    
+    blank_posts_right = max_length - length_article_right  
+  
     context = {
                     'article_objects_left': article_objects_left,
                     'article_objects_right': article_objects_right,
@@ -27,11 +25,13 @@ def home(request):
 
 def create_article(request):
     article_form = CreateArticleForm()
+    profile_account = Profile.objects.get(user=request.user)
     if request.method == 'POST':
         article_form = CreateArticleForm(request.POST, request.FILES)
         if article_form.is_valid():
             instance = article_form.save(commit=False)
             instance.author = request.user
+            instance.author_profile = profile_account
             instance.save()
             return redirect('blog:home')
         
@@ -42,8 +42,6 @@ def create_article(request):
 def blog_detail(request, slug):
     specific_article = Article.objects.get(slug=slug)
     profile_author = Profile.objects.get(user=specific_article.author)
-    print('Article author:', specific_article.author)
-    print('Profile author:', profile_author.user)
     
     context = {'specific_article': specific_article, 'profile_author': profile_author}    
     return render(request, 'blog/blog_detail.html', context)
