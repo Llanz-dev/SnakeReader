@@ -19,7 +19,7 @@ CATEGORIES_POSTS = (
 class Article(models.Model):
     author_profile = models.ForeignKey(Profile, on_delete=models.CASCADE, default=None)
     author = models.ForeignKey(User, on_delete=models.CASCADE)    
-    title = models.CharField(max_length=70)
+    title = models.CharField(max_length=80)
     category_choices = models.CharField(max_length=10, choices=CATEGORIES_POSTS, default='health')
     slug = models.SlugField(unique=True)
     intro = models.TextField(blank=False, null=True)

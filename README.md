@@ -1,3 +1,4 @@
 Still working on... 
 
-Improve the author info and account profile
+Fix the page of author in categories
+Make your user slug becomes fullname
