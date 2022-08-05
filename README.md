@@ -1,3 +1,3 @@
 Still working on... 
 
-Improve the author info and account profile
+Fix the page of author in categories
