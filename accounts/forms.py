@@ -9,14 +9,14 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         exclude = ['user']
-        fields = ['first_name', 'last_name', 'province', 'phone', 'profile_picture']
+        fields = ['province', 'phone', 'profile_picture']
 
 
 class UserUpdateForm(forms.ModelForm):
     username = forms.CharField(label='Username')
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['username', 'first_name', 'last_name', 'email']
         
         
 class SignUpForm(UserCreationForm):
@@ -26,11 +26,9 @@ class SignUpForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(SignUpForm, self).__init__(*args, **kwargs)
 
-        for fieldname in ['username', 'password1', 'password2']:
+        for fieldname in ['username', 'first_name', 'last_name', 'password1', 'password2']:
             self.fields[fieldname].help_text = None
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2', )
-
-
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )

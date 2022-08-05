@@ -1,3 +1,3 @@
 Still working on... 
 
-blog views logic to template 
+Improve the author info and account profile
