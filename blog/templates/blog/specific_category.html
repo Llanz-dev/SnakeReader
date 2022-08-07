@@ -31,7 +31,7 @@ Category
                         <img src="{{ data.heading_img.url }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><a href="{% url 'blog:blog_detail' data.slug %}">{{ data.title|truncatechars:70 }}</a></h5>
-                            <p class="card-text"><small>{{ data.date|date:'F d, o' }} | <a href="{% url 'blog:author' data.slug %}" class="footer-link text-success">
+                            <p class="card-text"><small>{{ data.date|date:'F d, o' }} | <a href="{% url 'blog:author' data.author_profile.user_slug %}" class="footer-link text-success">
                                         {{ data.author }}</a></small></p>
                         </div>
                     </div>
