@@ -13,22 +13,26 @@ Create article
 
 {% block content %}
 <div class="container-md mt-3">    
-    <h1>Create article</h1>
     <div class="col-md-12">
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="mb-3">
-            {{ article_form.media }}
-            {% for field in article_form %}
-                <div class='col-md-7'>
-                  {{ field|as_crispy_field }}
-                </div>
-            {% endfor %}
-        </div>
-        <div>
-            <button type="submit" class="btn btn-success">Submit</button>
-        </div>
-    </form>
-</div>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            <div class="mb-3">
+                <h1>Create article</h1>
+
+                {{ article_form.media | safe | linebreaks }}
+                {% for field in article_form %}
+                    <div class='col-md-7'>
+                      {{ field|as_crispy_field }}
+                    </div>
+                {% endfor %}
+
+            </div>
+            <div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock content %}
