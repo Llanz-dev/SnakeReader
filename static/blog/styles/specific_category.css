@@ -6,3 +6,11 @@
 .card-title a:hover {
     text-decoration: underline;
 }
+
+.blog-div {
+    text-decoration: none;
+}
+
+.blog-div:hover {
+    text-decoration: underline;
+}
