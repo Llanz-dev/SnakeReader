@@ -17,7 +17,8 @@ class Profile(models.Model):
         return f'{self.user.username} profile'
 
     def save(self, *args, **kwargs):
-        self.user_slug = slugify(self.user.first_name)
+        self.full_name = self.user.first_name + self.user.last_name
+        self.user_slug = slugify(self.full_name)
         super(Profile, self).save(*args, **kwargs)
         img = Image.open(self.profile_picture.path)
 

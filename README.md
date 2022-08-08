@@ -1,4 +1,3 @@
 Still working on... 
 
-Fix the page of author in categories
-Make your user slug becomes fullname
+Combine between the first name and last name in user_slug

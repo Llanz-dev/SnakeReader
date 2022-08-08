@@ -4,21 +4,21 @@
 
 
 {% block file_css %}
-<link rel="stylesheet" href="{% static 'accounts/styles/sign-up.css' %}">
+<link rel="stylesheet" href="{% static 'accounts/styles/sign-in.css' %}">
 {% endblock file_css %}
 
 {% block title %}
-Sign Up
+Sign In
 {% endblock title %}
 
 
 {% block content %}
-<div class="container-md mt-5">
+<div class="container-md mt-5">                   
     <div class="row">
-        <div class="col-md-8 sign-div">
+        <div class="col-lg-8 sign-div">
             <img src="{% static 'accounts/images/signin.jpeg' %}" alt="Woman smiling" class="img-fluid rounded">
             <div class="top-left rounded">
-                <h1 class="fs-1 fw-light p-1">Read a blog</h1>
+                <h1 class="fw-light p-1 heading-page">Read a blog</h1>
             </div>
             <div class="bottom-left rounded">
                 <p class="fw-light fst-italic p-1 bg-light text-black rounded">"The more that you read,
@@ -33,7 +33,11 @@ Sign Up
                 <p class="fw-light p-1 bg-light text-black rounded">-Dr. Seuss</p>
             </div>
         </div>
-        <div class="col-md-4 align-self-center">
+        <div class="col-lg-4 align-self-center">            
+            {% if not request.user.is_anonymous %}
+            <h1>You already signed in</h1>
+            <h2>{{ user }}</h2>
+            {% else %}                
             {% if messages %}
                 {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}">
@@ -42,6 +46,7 @@ Sign Up
                 {% endfor %}
             {% endif %}
             <h1 class="display-2 text-center fw-bold mb-3">Sign In</h1>
+            <h1 class="display-2 text-center fw-bold mb-3">{{ user }}</h1>
             <form method="POST">
                 {% csrf_token %}
                 <div class="mb-3">
@@ -58,7 +63,8 @@ Sign Up
                 {% endif %}
                 <button type="submit" class="btn btn-success">Submit</button>
             </form>
+            {% endif %}
+            </div>
         </div>
-    </div>
 </div>
 {% endblock content %}

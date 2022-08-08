@@ -1,0 +1,61 @@
+.sign-div {
+    position: relative;
+    color: white;
+  }
+  
+  .top-left {
+      background-color: white;
+      color: black;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+  }
+  
+  .bottom-left {
+    position: absolute;
+    bottom: 30px;
+    left: 20px;
+  }
+  
+  .bottom-left-1 {
+    position: absolute;
+    bottom: -7px;
+    left: 20px;
+  }
+  
+  @media only screen and (max-width: 1399px) {
+    .bottom-left {
+      bottom: 30px;
+    }
+    .bottom-left-1 {
+      bottom: -7px;
+    }
+  }
+  
+  @media only screen and (max-width: 1200px) {
+    .bottom-left {
+        bottom: 30px;
+        width: 90%;
+      }
+      .bottom-left-1 {
+        bottom: -7px;
+      }
+  }
+  
+  @media only screen and (max-width: 991px) {
+    .bottom-left {
+      bottom: 30px;
+    }
+    .bottom-left-1 {
+      bottom: -7px;
+    }
+  }
+
+  @media only screen and (max-width: 700px) {
+    .heading-page {
+        font-size: 28px;
+    }
+    p {
+        font-size: 14px;
+    }
+  }

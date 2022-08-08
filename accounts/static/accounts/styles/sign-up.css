@@ -22,3 +22,39 @@
   bottom: -7px;
   left: 20px;
 }
+
+@media only screen and (max-width: 1399px) {
+  .bottom-left {
+    bottom: 175px;
+  }
+  .bottom-left-1 {
+    bottom: 135px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .bottom-left {
+    bottom: 255px;
+  }
+  .bottom-left-1 {
+    bottom: 215px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .bottom-left {
+    bottom: 30px;
+  }
+  .bottom-left-1 {
+    bottom: -7px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .heading-page {
+      font-size: 28px;
+  }
+  p {
+      font-size: 14px;
+  }
+}
