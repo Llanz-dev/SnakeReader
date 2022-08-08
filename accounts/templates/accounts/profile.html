@@ -22,7 +22,8 @@ Profile
             <div class="mt-2">
                 {{ profile_form.profile_picture }}
             </div>
-        </div>
+            
+        </div>  
         <div class="col-md-8">
             {% if messages %}
                 {% for message in messages %}
@@ -48,6 +49,14 @@ Profile
                     <br>
                     {{ profile_form.phone|as_crispy_field }}
                 </div>    
+                <div class="col-12">
+                    <br>
+                    {{ profile_form.job_description|as_crispy_field }}
+                    {{ profile_form.media | safe | linebreaks }}                    
+                    <label for="">About info</label>   
+                    {{ profile_form.about_info }}                                          
+                </div>       
+                    
                 <div class="col-6 mt-3">
                     <button type="submit" class="btn btn-outline-success">Update</button>
                 </div>

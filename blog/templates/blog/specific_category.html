@@ -12,26 +12,77 @@ Category
 
 {% block content %}
 
-<div class="container-fluid bg-success">
-    <div class="container-md text-center text-light py-4">
+{% if slug == 'health' %}    
+    <div class="container-fluid bg-warning">
+        <div class="container-md text-center text-black py-4">        
         <h1>{{ slug|title }} Development</h1>
         <h3>Making {{ slug }} work for everyone</h3>
+        </div>
     </div>
 </div>
+{% elif slug == 'sports' %}
+    <div class="container-fluid bg-primary">
+        <div class="container-md text-center text-light py-4">        
+        <h1>{{ slug|title }} Development</h1>
+        <h3>Making {{ slug }} work for everyone</h3>
+        </div>
+    </div>
+</div>
+{% elif slug == 'finance' %}
+    <div class="container-fluid bg-success">
+        <div class="container-md text-center text-light py-4">        
+        <h1>{{ slug|title }} Development</h1>
+        <h3>Making {{ slug }} work for everyone</h3>
+        </div>
+    </div>
+</div>
+{% elif slug == 'technology' %}
+    <div class="container-fluid bg-dark">
+        <div class="container-md text-center text-light py-4">        
+        <h1>{{ slug|title }} Development</h1>
+        <h3>Making {{ slug }} work for everyone</h3>
+        </div>
+    </div>
+</div>
+{% elif slug == 'fashion' %}
+    <div class="container-fluid bg-info">
+        <div class="container-md text-center text-black py-4">        
+        <h1>{{ slug|title }} Development</h1>
+        <h3>Making {{ slug }} work for everyone</h3>
+        </div>
+    </div>
+</div>
+{% elif slug == 'travel' %}
+    <div class="container-fluid" style="background-color: pink;">
+        <div class="container-md text-center text-black py-4">        
+        <h1>{{ slug|title }} Development</h1>
+        <h3>Making {{ slug }} work for everyone</h3>
+        </div>
+    </div>
+</div>
+{% elif slug == 'music' %}
+    <div class="container-fluid bg-danger">
+        <div class="container-md text-center text-light py-4">        
+        <h1>{{ slug|title }} Development</h1>
+        <h3>Making {{ slug }} work for everyone</h3>
+        </div>
+    </div>
+</div>
+{% endif %}
 
 <div class="container-md mt-5">
     {% if no_category %}
         <h1 class="mb-5 lh-lg">There's no post yet</h1>
         <br>
     {% else %}            
-    <div class="row row-cols-1 row-cols-md-2 g-4">        
-            {% for data in category %}
+    <div class="row row-cols-1 row-cols-md-2 g-4"> 
+            {% for data in category %}     
                 <div class="col">
                     <div class="card">
                         <img src="{{ data.heading_img.url }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><a href="{% url 'blog:blog_detail' data.slug %}">{{ data.title|truncatechars:70 }}</a></h5>
-                            <p class="card-text"><small>{{ data.date|date:'F d, o' }} | <a href="{% url 'blog:author' data.slug %}" class="footer-link text-success">
+                            <p class="card-text"><small>{{ data.date|date:'F d, o' }} | <a href="{% url 'blog:author' data.author_profile.user_slug %}" class="footer-link text-success">
                                         {{ data.author }}</a></small></p>
                         </div>
                     </div>

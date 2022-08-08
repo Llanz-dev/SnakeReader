@@ -6,10 +6,11 @@ from django import forms
 class ProfileForm(forms.ModelForm):
     profile_picture = forms.ImageField(required=False, error_messages = {'invalid': ("Image files only")}, widget=forms.FileInput)
     phone = forms.CharField(max_length=11, min_length=11, required=False)
+    job_description = forms.CharField(required=False, widget=forms.Textarea(attrs={'rows': 4, 'cols': 30}))
     class Meta:
         model = Profile
-        exclude = ['user']
-        fields = ['province', 'phone', 'profile_picture']
+        exclude = ['user', 'user_slug']
+        fields = '__all__'
 
 
 class UserUpdateForm(forms.ModelForm):
