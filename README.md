@@ -1,3 +1,3 @@
 Still working on... 
 
-Combine between the first name and last name in user_slug
+Author latest upload blog in author page

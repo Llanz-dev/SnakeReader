@@ -55,12 +55,32 @@ Profile
                     {{ profile_form.media | safe | linebreaks }}                    
                     <label for="">About info</label>   
                     {{ profile_form.about_info }}                                          
-                </div>       
-                    
+                </div>                           
                 <div class="col-6 mt-3">
                     <button type="submit" class="btn btn-outline-success">Update</button>
                 </div>
             </div>
+        </div>
+        <div class="mt-5">        
+            
+            {% if not author_article %}
+                <h2 class="mb-4 ml-3">You have no blog post yet.</h2>                
+            {% else %}
+                <h2 class="mb-4 ml-3">Your latest uploads</h2>                                
+            {% endif %}
+                
+            <div class="row align-items-stretch">
+                {% for data in author_article %}
+                <div class="col-md-3">
+                    <a href="{% url 'blog:blog_detail' data.slug %}" class="card mb-4 mx-3 blog-title text-black" style="width: 18rem;">
+                        <img src="{{ data.heading_img.url }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h3 class="card-title">{{ data.title|truncatechars:70 }}</h3>
+                        </div>
+                    </a>         
+                </div>                 
+                {% endfor %}     
+            </div>           
         </div>
     </form>
 </div>

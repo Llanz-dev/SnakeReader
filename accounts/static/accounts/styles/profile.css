@@ -24,3 +24,11 @@
     text-decoration: none;
     color: black;
 }
+
+.blog-title {
+    text-decoration: none;
+}
+
+.blog-title:hover {
+    text-decoration: underline;
+}

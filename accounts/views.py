@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from accounts.models import Profile
+from blog.models import Article
 
 # Create your views here.
 def sign_in(request):
@@ -40,6 +41,7 @@ def sign_out(request):
 
 @login_required
 def profile(request):
+    author_article = Article.objects.filter(author=request.user).order_by('-id')
     profile_form = ProfileForm(instance=request.user.profile)
     user_form = UserUpdateForm(instance=request.user)
     if request.method == 'POST':
@@ -55,6 +57,6 @@ def profile(request):
             user_form.save()
             return redirect('accounts:profile')
         
-    context = {'profile_form': profile_form, 'user_form': user_form}
+    context = {'profile_form': profile_form, 'user_form': user_form, 'author_article': author_article}
     return render(request, 'accounts/profile.html', context)
     
