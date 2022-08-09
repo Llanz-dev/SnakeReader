@@ -19,12 +19,10 @@ Author
         </div>
         
         <div class="col-lg-10 align-self-center">
-            <h1 class="lh-base mt-2">{{ author_info.user.username }}</h1>
-            
+            <h1 class="lh-base mt-2">{{ author_info.user.username }}</h1>            
             {% if author_info.job_description %}
               <p>{{ author_info.job_description }}</p>
-            {% endif %}
-              
+            {% endif %}              
         </div>
         <div class="col-lg-4 mt-4">
           <table class="table table-striped">
@@ -65,5 +63,21 @@ Author
           {% endif %}            
         </div>
     </div>
+    <hr>
+    <div class="mt-5">        
+      <h2 class="mb-4 ml-3">{{ author_info.user.first_name }} {{ author_info.user.last_name }} latest uploads</h2>
+      <div class="row align-items-stretch">        
+          {% for data in author_article %}
+          <div class="col-md-3">
+              <a href="{% url 'blog:blog_detail' data.slug %}" class="card mb-4 mx-3 blog-title text-black" style="width: 18rem;">
+                  <img src="{{ data.heading_img.url }}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h3 class="card-title">{{ data.title|truncatechars:70 }}</h3>
+                  </div>
+              </a>         
+          </div>                 
+          {% endfor %}     
+      </div>           
+  </div>
 </div>
 {% endblock content %}

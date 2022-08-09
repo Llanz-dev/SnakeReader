@@ -62,7 +62,13 @@ Profile
             </div>
         </div>
         <div class="mt-5">        
-            <h2 class="mb-4 ml-3">Your latest uploads</h2>
+            
+            {% if not author_article %}
+                <h2 class="mb-4 ml-3">You have no blog post yet.</h2>                
+            {% else %}
+                <h2 class="mb-4 ml-3">Your latest uploads</h2>                                
+            {% endif %}
+                
             <div class="row align-items-stretch">
                 {% for data in author_article %}
                 <div class="col-md-3">

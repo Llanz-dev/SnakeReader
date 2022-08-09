@@ -59,8 +59,9 @@ def contact(request):
 
 def author(request, user_slug):
     author_info = Profile.objects.get(user_slug=user_slug)
+    author_article = Article.objects.filter(author_profile=author_info)
     
-    context = {'author_info': author_info}
+    context = {'author_info': author_info, 'author_article': author_article}
     return render(request, 'blog/author.html', context)
 
 
