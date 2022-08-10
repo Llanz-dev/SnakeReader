@@ -1,8 +1,8 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from .forms import CreateArticleForm
-from accounts.forms import ProfileForm, UserUpdateForm
-from .models import Article
 from accounts.models import Profile
+from .models import Article
 # Create your views here.
 
 def home(request): 
@@ -22,7 +22,7 @@ def home(request):
                 }
     return render(request, 'blog/home.html', context)
 
-
+@login_required
 def create_article(request):
     article_form = CreateArticleForm()
     profile_account = Profile.objects.get(user=request.user)
@@ -37,7 +37,6 @@ def create_article(request):
         
     context = {'article_form': article_form}
     return render(request, 'blog/create_article.html', context)
-
 
 def blog_detail(request, slug):
     specific_article = Article.objects.get(slug=slug)
