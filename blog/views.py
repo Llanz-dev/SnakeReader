@@ -7,7 +7,7 @@ from .models import Article
 
 def home(request): 
     article_objects_left = Article.objects.all().order_by('-id')[0:5]   
-    article_objects_right = Article.objects.all().order_by('-id')[5:11]   
+    article_objects_right = Article.objects.all().order_by('-id')[5:10]   
     length_article_left = len(article_objects_left)
     length_article_right = len(article_objects_right)
     max_length = 5
