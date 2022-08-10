@@ -8,14 +8,17 @@ from blog.models import Article
 
 # Create your views here.
 def sign_in(request):
+    valuenext = request.POST.get('next')
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
-        
         if user is not None:                                                
-            login(request, user)
-            return redirect('blog:home')            
+            login(request, user)            
+            if valuenext != '':
+                return redirect(valuenext)            
+            else:
+                return redirect('blog:home')            
         else:
             messages.info(request, 'username or password is incorrect')
             
