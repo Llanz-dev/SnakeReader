@@ -1,3 +1,5 @@
 Still working on... 
 
-Author latest upload blog in author page
+Fix the responsiveness in the home page
+width: 285
+height: 618

@@ -1,99 +1,93 @@
-.remove-gutter {
-    --bs-gutter-x: 0;
+.post-row {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
 }
 
-.none-post-side {
-    margin: 100%;
-}
-
-.none-post {
-    margin: 60%;
-}
-
-p {
-    margin-bottom: .5vw;
-}
-
-.author-name {
-    opacity: .9;
-}
-
-.recent-div a {
-    color: white;
-    text-decoration: none;
-}
-
-.recent-div a:hover {
-    text-decoration: underline;
-}
-
-.image-container {
+.post-div {
     position: relative;
+    width: 32rem;
+    margin-bottom: 2rem;
 }
 
-.one-text h1 {
-    font-size: 3.5vw;
-}
-
-.one-text, .two-text, .three-text {
+.bottom-left {
     position: absolute;
-    color: white;
-    background-color: #198754;
+    top: 15.5rem;
+    left: .5rem;
 }
 
-.one-text {
-    bottom: 20px;
-    left: 16px;
-    padding-top: .5vw;
-}
-
-.one-pic {
-    height: 500px;
-    width: 700px;
-}
-
-.two-text, .three-text {
-    bottom: 10px;
-    left: 16px;
-}
-
-.two-text h1, .three-text h1 {
-    font-size: 1.5vw;
-}
-
-.two-text p, .three-text {
-    font-size: 12px;
-    letter-spacing: 1px;
-}
-
-.second-pic {
-    width: 500px;
-    height: 250px;
-}
-
-@media only screen and (max-width: 868px) {
-    .one-text h1 {
-        font-size: 4.0vw;
+@media only screen and (max-width: 1200px) {
+    .post-div {
+        width: 28rem;
     }
-    .two-text h1, .three-text h1 {
-        font-size: 2.0vw;
+    .bottom-left {
+        top: 13rem;
     }
 }
 
-@media only screen and (max-width: 768px) {
-    .one-text h1 {
-        font-size: 4.5vw;
+@media only screen and (max-width: 990px) {
+    .post-div {
+        width: 21rem;
     }
-    .two-text h1, .three-text h1 {
-        font-size: 2.5vw;
+    .bottom-left {
+        top: 8.9rem;
+    }
+    h2.title {
+        font-size: 27px;
+    }
+    p {
+        font-size: 11px;
     }
 }
 
-@media only screen and (max-width: 576px) {
-    .one-text h1 {
-        font-size: 5.0vw;
+@media only screen and (max-width: 725px) {
+    .post-div {
+        width: 19rem;
     }
-    .two-text h1, .three-text h1 {
-        font-size: 3.0vw;
+    .bottom-left {
+        top: 8.2rem;
     }
+    h2.title {
+        font-size: 20px;
+    }
+    p {
+        font-size: 10px;
+    }
+}
+
+@media only screen and (max-width: 660px) {
+    .post-div {
+        width: 17rem;
+    }
+    .bottom-left {
+        top: 7.2rem;
+    }
+    h2.title {
+        font-size: 17px;
+    }  
+}
+
+@media only screen and (max-width: 600px) {
+    .post-div {
+        width: 16rem;
+    }
+    .bottom-left {
+        top: 6.5rem;
+    } 
+}
+
+@media only screen and (max-width: 578px) {
+    .post-row {
+        flex-direction: column;
+    }
+    .post-div {
+        width: 100%;
+        height: auto;
+    }
+    .bottom-left {
+        top: 220px;
+    } 
+    h2.title {
+        font-size: 25px;
+    } 
 }
