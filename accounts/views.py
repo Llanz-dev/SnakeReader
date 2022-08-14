@@ -13,6 +13,9 @@ def sign_in(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
+
+        print('user verified:', user.is_email_verified)
+        
         if user is not None:                                                
             login(request, user)            
             if valuenext != '':
