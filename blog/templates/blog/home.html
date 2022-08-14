@@ -16,11 +16,15 @@ Home
 <div class="container-md mt-3">
   {% if article_objects_left %}
     <h2 class="mb-3">Recent posts</h2>
+  {% else %}
+  <div class="text-center">
+    <h1 class="mb-3">No post yet</h1>
+    <img src="{% static 'blog/images/join.jpg' %}" alt="" class="w-75">
+  </div>
   {% endif %}
 
   <div class="row">
-    <div class="col-sm-6">
-      
+    <div class="col-sm-6">      
       {% for data in article_objects_left %}
       <div class="card mb-3">
         <a href="{% url 'blog:blog_detail' data.slug %}" class="text-dark blog-link">
