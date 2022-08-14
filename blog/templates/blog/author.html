@@ -65,7 +65,13 @@ Author
     </div>
     <hr>
     <div class="mt-5">        
-      <h2 class="mb-4 ml-3">{{ author_info.user.first_name }} {{ author_info.user.last_name }} latest uploads</h2>
+      
+      {% if author_article %}
+        <h2 class="mb-4 ml-3">{{ author_info.user.first_name }} {{ author_info.user.last_name }} latest uploads:</h2>        
+      {% else %}
+        <h2 class="mb-4 ml-3">{{ author_info.user.first_name }} {{ author_info.user.last_name }} had not upload yet.</h2>                
+      {% endif %}
+        
       <div class="col-12">
         <div class="author-blogs">        
           {% for data in author_article %}

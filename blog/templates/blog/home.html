@@ -13,54 +13,46 @@ Home
 
 
 {% block content %}
-<div class="container-md recent-div mt-4">
- 
-  <h2 class="mb-3">Recent posts</h2>   
-  <div class="row">    
-    <div class="col-md-6">
-      {% for data in article_objects_left %}            
-        <div class="image-container" style="width: 30rem;">
-          <a href="{% url 'blog:blog_detail' data.slug %}">
-          <img src="{{ data.heading_img.url }}" alt="" class="img-fluid rounded card-img-top">
-          <div class="two-text rounded px-2">
-            <h1 class="pt-1 card-title w-100">{{ data.title|truncatechars:70 }}</h1>
-          </a>
-            <p><a href="{% url 'blog:author' data.author_profile.user_slug %}" class="author-name">{{ data.author }}</a></p>            
-          </div>              
-        </div>
-        <br>
-      {% endfor %}
-      
-      {% for i in blank_posts_left %}
-        <div class="image-container border border-success" style="width: 30rem;">
-          <div class="none-post"></div>
-        </div>
-        <br>
-      {% endfor %}
-    </div> 
+<div class="container-md mt-3">
+  {% if article_objects_left %}
+    <h2 class="mb-3">Recent posts</h2>
+  {% else %}
+  <div class="text-center">
+    <h1 class="mb-3">No post yet</h1>
+    <img src="{% static 'blog/images/join.jpg' %}" alt="" class="w-75">
+  </div>
+  {% endif %}
 
-    <div class="col-md-6">
-      {% for data in article_objects_right %}            
-        <div class="image-container" style="width: 30rem;">
-          <a href="{% url 'blog:blog_detail' data.slug %}">
-          <img src="{{ data.heading_img.url }}" alt="" class="img-fluid rounded card-img-top">
-          <div class="two-text rounded px-2">
-            <h1 class="pt-1 card-title w-100">{{ data.title|truncatechars:70 }}</h1>
-          </a>
-            <p><a href="{% url 'blog:author' data.author_profile.user_slug %}" class="author-name">{{ data.author }}</a></p>            
-          </div>              
+  <div class="row">
+    <div class="col-sm-6">      
+      {% for data in article_objects_left %}
+      <div class="card mb-3">
+        <a href="{% url 'blog:blog_detail' data.slug %}" class="text-dark blog-link">
+        <img src="{{ data.heading_img.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h2 class="card-title">{{ data.title }}</h2>
+        </a>
+          <p class="card-text"><small>{{ data.date|date:'F d, o' }} | <a href="{% url 'blog:author' data.author_profile.user_slug %}" class="footer-link text-success">
+            {{ data.author }}</a></small></p>
         </div>
-        <br>
-      {% endfor %}
-    
-    {% for i in blank_posts_right %}
-      <div class="image-container border border-success" style="width: 30rem;">
-        <div class="none-post"></div>
       </div>
-      <br>
-    {% endfor %}
-  </div> 
-</div>
-
+      {% endfor %}
+        
+    </div>
+    <div class="col-sm-6">
+      {% for data in article_objects_right %}
+      <div class="card mb-3">
+        <a href="{% url 'blog:blog_detail' data.slug %}" class="text-dark blog-link">
+        <img src="{{ data.heading_img.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h2 class="card-title">{{ data.title }}</h2>
+        </a>
+          <p class="card-text"><small>{{ data.date|date:'F d, o' }} | <a href="{% url 'blog:author' data.author_profile.user_slug %}" class="footer-link text-success">
+            {{ data.author }}</a></small></p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 {% endblock content %}

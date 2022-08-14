@@ -48,7 +48,7 @@ Blog
             </div>
             <div class="col-xl-10 col-lg-8 col-md-8 flex-fill">
                 <p class="fw-bold"><a href="{% url 'blog:author' profile_author.user_slug %}" class="text-decoration-none text-success">{{ profile_author.user.username }}</a> </p>
-                <p>Senior Vice President and Chief Economist of the World Bank Group</p>
+                <p>{{ profile_author.job_description }}</p>
                 <a href="{% url 'blog:author' profile_author.user_slug %}" class="btn btn-success">MORE BLOGS BY {{ profile_author.user.username|upper }}</a>
             </div>
         </div>
