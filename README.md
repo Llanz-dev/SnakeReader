@@ -39,7 +39,7 @@ Install the SnakeReader with the following:
 ![profile 1](screenshots/profile1.png?raw=true)
 
 ## Acknowledgments
-  ### Some of my design was inspired by the following:
+  ### My design was inspired by the following:
 - [health.com](https://www.health.com/) 
 - [ytravelblog.com](https://www.ytravelblog.com/things-to-do-on-fraser-island/) 
  
