@@ -1,9 +1,8 @@
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
-from django.db import models
-
 from accounts.models import Profile
+from django.db import models
 
 CATEGORIES_POSTS = (
     ('health','HEALTH'),
@@ -18,7 +17,7 @@ CATEGORIES_POSTS = (
 # Create your models here.
 class Article(models.Model):
     author_profile = models.ForeignKey(Profile, on_delete=models.CASCADE, default=None)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)    
+    author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)    
     title = models.CharField(max_length=100)
     category_choices = models.CharField(max_length=10, choices=CATEGORIES_POSTS, default='health')
     slug = models.SlugField(unique=True)

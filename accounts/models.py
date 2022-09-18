@@ -6,7 +6,7 @@ from PIL import Image
 
 # Create your models here.
 class Profile(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE, blank=True)
     province = models.CharField(max_length=30, blank=True, null=True)
     phone = models.CharField(max_length=11, blank=True, null=True)
     profile_picture = models.ImageField(default='default.jpg', upload_to='profile_pics', blank=True, null=True)
