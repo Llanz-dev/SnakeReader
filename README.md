@@ -8,8 +8,10 @@ SnakeReader is a blog application that has various categories and you could also
 - I find it difficult sometimes to get the field of the ForeignKey, ManyToMany, and OneToOne relationship. I hope to add a comment section on each article and have a delete function for the deletion of the profile.
 
 ## Built With
-- Django
+- HTML
+- CSS
 - Bootstrap (5.1)
+- Django (4.0.6)
 
 ## How to Install and Run the Project
 
