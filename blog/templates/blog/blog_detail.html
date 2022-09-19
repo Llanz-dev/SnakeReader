@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 
 {% block file_css %}
@@ -55,8 +56,27 @@ Blog
     </div>
 </div>
 
-<div class="container">
-    <h2>Comments</h2>
+<!-- Comments -->
+<div class="container mt-3">
+    <h3 class="fw-bold">Top comments ({{ specific_article.comments.all.count }})</h3>    
+    <a href="{% url 'blog:add_comment' specific_article.slug %}" class="btn btn-sm btn-success">Add comment</a>
+    <div class="col-md-6 p-3 bg-light mt-3">        
+    {% for comment in specific_article.comments.all %}
+        <b class="my-2">            
+            <a href="{% url 'blog:author' comment.author_profile.user_slug %}" class="text-decoration-none text-success">{{ comment.author_profile.user.username }}</a> - {{ comment.date_added }}</b>                
+        <div class="border p-2 my-2">
+            {{ comment.body }}
+           <br>           
+           {% if comment.author_profile.user == request.user %}
+            <div class="mt-2">
+                <a href="{% url 'blog:delete_comment' comment.pk specific_article.slug %}" class="btn btn-sm btn-danger">Delete</a>
+                <a href="{% url 'blog:edit_comment' comment.pk specific_article.slug %}" class="btn btn-sm btn-warning">Edit</a>
+            </div>
+           {% endif %}     
+           <p></p>       
+       </div>
+    {% endfor %}
+    </div>
 </div>
 
 {% endblock content %}

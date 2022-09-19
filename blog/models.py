@@ -33,4 +33,12 @@ class Article(models.Model):
         if not self.id:
             self.slug = slugify(self.title)
         super(Article, self).save(*args, **kwargs)    
-    
+
+class Comment(models.Model):
+    article = models.ForeignKey(Article, related_name='comments', blank=True, null=True, on_delete=models.CASCADE)
+    author_profile = models.ForeignKey(Profile, on_delete=models.CASCADE, default=None)
+    body = models.TextField(max_length=70, blank=True, null=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.author_profile.user.username + ': ' + self.body[:30]
