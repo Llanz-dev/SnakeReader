@@ -1,8 +1,9 @@
+from multiprocessing import context
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-from .forms import CreateArticleForm
+from .forms import CreateArticleForm, CommentForm
 from accounts.models import Profile
-from .models import Article
+from .models import Article, Comment
 # Create your views here.
 
 def home(request): 
@@ -40,21 +41,18 @@ def create_article(request):
 
 def blog_detail(request, slug):
     specific_article = Article.objects.get(slug=slug)
-    profile_author = Profile.objects.get(user=specific_article.author)
+    profile_author = Profile.objects.get(user=specific_article.author)                 
     
     context = {'specific_article': specific_article, 'profile_author': profile_author}    
     return render(request, 'blog/blog_detail.html', context)
-
 
 def about(request):
     context = {}
     return render(request, 'blog/about.html', context)
 
-
 def contact(request):
     context = {}
     return render(request, 'blog/contact.html', context)
-
 
 def author(request, user_slug):
     author_info = Profile.objects.get(user_slug=user_slug)
@@ -62,7 +60,6 @@ def author(request, user_slug):
     
     context = {'author_info': author_info, 'author_article': author_article}
     return render(request, 'blog/author.html', context)
-
 
 def specific_category(request, slug):
     category = Article.objects.filter(category_choices=slug)
@@ -72,3 +69,35 @@ def specific_category(request, slug):
         
     context = {'category': category, 'slug': slug, 'no_category': no_category}
     return render(request, 'blog/specific_category.html', context)
+
+def add_comment(request, slug):
+    specific_article = Article.objects.get(slug=slug)
+    comment_form = CommentForm()
+    
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST, request.FILES)
+        if comment_form.is_valid():
+            instance = comment_form.save(commit=False)
+            instance.author_profile = request.user.profile
+            instance.article = specific_article
+            instance.save()
+            return redirect('blog:blog_detail', slug)   
+    context = {'comment_form': comment_form}
+    return render(request, 'blog/comment_add.html', context)
+    
+
+def delete_comment(request, pk, slug):
+    Comment.objects.get(pk=pk).delete()
+    return redirect('blog:blog_detail', slug)
+
+def edit_comment(request, pk, slug):
+    comment = Comment.objects.get(pk=pk)
+    comment_form = CommentForm(instance=comment)
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST, instance=comment)
+        if comment_form.is_valid():
+            comment_form.save()
+            return redirect('blog:blog_detail', slug)
+            
+    context = {'comment_form': comment_form}
+    return render(request, 'blog/comment_add.html', context)
