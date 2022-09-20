@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+<div class="container mt-5" style="height: 37vh;">
+      <h1>Are you sure you want to delete your "<span class="text-danger">{{ article.title }}</span>" article?</h1>          
+      <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm btn-danger my-3">Delete Article</button>
+      </form>
+      <a href="{% url 'blog:blog_detail' article.slug %}" class="btn btn-sm btn-success">Back</a>
+</div>
+
+{% endblock content %}
+    

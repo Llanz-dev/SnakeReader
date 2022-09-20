@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+
+{% if author_article %}
+  <div class="container mt-5">      
+{% else %}
+  <div class="container mt-5" style="height: 37vh;">      
+{% endif %}
+  
+  <h1 class="">Are you sure you want to delete your profile?</h1>   
+  
+  {% if author_article %}        
+    <h3 class="text-danger">Your {{ author_article.count }} articles will also be deleted</h3>  
+    <div class="d-flex flex-wrap col-12">
+      {% for data in author_article %}
+      <a href="{% url 'blog:blog_detail' data.slug %}" class="text-decoration-none text-black my-2 mx-2">
+        <div class="col-3">
+          <div class="card" style="width: 18rem;">
+            <img src="{{ data.heading_img.url }}" class="card-img-top" alt="article heading image">
+            <div class="card-body">
+              <h5 class="card-title">{{ data.title }}</h5>
+            </div>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>   
+  {% endif %}
+    
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-md btn-danger my-3 mx-2">Delete {{ request.user }}</button>
+  </form>
+  <a href="{% url 'accounts:profile' %}" class="btn btn-md btn-success mx-2">Back</a>
+</div>
+    
+{% endblock content %}
+    

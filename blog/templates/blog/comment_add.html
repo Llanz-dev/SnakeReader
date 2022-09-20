@@ -3,14 +3,14 @@
 {% load widget_tweaks %}
 
 {% block title %}
-Blog add comment
+Blog 
 {% endblock title %}
 
 
 {% block content %}
 <div class="container mt-5">
     <div class="col-md-6">
-        <h2>Comment</h2>
+        <h2>Comment</h2>    
         <form method="POST">
             {% csrf_token %}
             {{ comment_form.body|add_class:'form-control' }}
