@@ -2,6 +2,7 @@ from .forms import SignUpForm, ProfileForm, UserUpdateForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from django.contrib.auth.models import User
 from django.contrib import messages
 from accounts.models import Profile
 from blog.models import Article
@@ -63,4 +64,12 @@ def profile(request):
         
     context = {'profile_form': profile_form, 'user_form': user_form, 'author_article': author_article}
     return render(request, 'accounts/profile.html', context)
-    
+
+def confirmation_delete(request):
+    author_article = Article.objects.filter(author=request.user).order_by('-id')
+    if request.method == 'POST':
+        request.user.delete()
+        return redirect('accounts:sign-in')
+
+    context = {'author_article': author_article}
+    return render(request, 'accounts/confirmation_delete.html', context)

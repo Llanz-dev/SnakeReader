@@ -1,4 +1,6 @@
+from http.client import HTTPResponse
 from multiprocessing import context
+from sqlite3 import IntegrityError
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from .forms import CreateArticleForm, CommentForm
@@ -27,17 +29,25 @@ def home(request):
 def create_article(request):
     article_form = CreateArticleForm()
     profile_account = Profile.objects.get(user=request.user)
+    article = Article.objects.all()
+    for data in article:
+        if 'd' == str(data):
+            print('HEEY')
     if request.method == 'POST':
         article_form = CreateArticleForm(request.POST, request.FILES)
         if article_form.is_valid():
+            title_entered = article_form.cleaned_data.get('title')
+            if Article.objects.filter(title=title_entered).exists():
+                return redirect('blog:title_duplicate_error', title_entered)        
             instance = article_form.save(commit=False)
             instance.author = request.user
             instance.author_profile = profile_account
             instance.save()
-            return redirect('blog:home')
-        
+            return redirect('blog:home')           
+            
     context = {'article_form': article_form}
-    return render(request, 'blog/create_article.html', context)
+    return render(request, 'blog/create_article.html', context)      
+
 
 def blog_detail(request, slug):
     specific_article = Article.objects.get(slug=slug)
@@ -70,6 +80,7 @@ def specific_category(request, slug):
     context = {'category': category, 'slug': slug, 'no_category': no_category}
     return render(request, 'blog/specific_category.html', context)
 
+@login_required
 def add_comment(request, slug):
     specific_article = Article.objects.get(slug=slug)
     comment_form = CommentForm()
@@ -82,6 +93,7 @@ def add_comment(request, slug):
             instance.article = specific_article
             instance.save()
             return redirect('blog:blog_detail', slug)   
+        
     context = {'comment_form': comment_form}
     return render(request, 'blog/comment_add.html', context)
     
@@ -101,3 +113,17 @@ def edit_comment(request, pk, slug):
             
     context = {'comment_form': comment_form}
     return render(request, 'blog/comment_add.html', context)
+
+def delete_article(request, pk, slug):
+    article = Article.objects.get(slug=slug)
+    if request.method == 'POST':
+        article.delete()
+        return redirect('blog:home')
+    
+    context = {'article': article}
+    return render(request, 'blog/delete_article.html', context)
+
+def title_duplicate_error(request, title_entered):
+
+    context = {'title_entered': title_entered}
+    return render(request, 'blog/title_duplicate_error.html', context)

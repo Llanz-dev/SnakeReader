@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+<div class="container mt-5" style="height: 37vh;">
+    <h1>"{{ title_entered }}" title has already the same title</h1>
+    <h2>Change your title to something else!</h2>
+    <a href="{% url 'blog:create_article' %}" class="btn btn-md btn-success">Back</a>
+</div>
+{% endblock content %}
+    
