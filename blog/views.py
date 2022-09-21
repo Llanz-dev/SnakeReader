@@ -1,11 +1,9 @@
-from http.client import HTTPResponse
-from multiprocessing import context
-from sqlite3 import IntegrityError
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
 from .forms import CreateArticleForm, CommentForm
-from accounts.models import Profile
+from django.shortcuts import redirect, render
 from .models import Article, Comment
+from accounts.models import Profile
+from django.contrib import messages
 # Create your views here.
 
 def home(request): 
@@ -29,16 +27,16 @@ def home(request):
 def create_article(request):
     article_form = CreateArticleForm()
     profile_account = Profile.objects.get(user=request.user)
-    article = Article.objects.all()
-    for data in article:
-        if 'd' == str(data):
-            print('HEEY')
     if request.method == 'POST':
         article_form = CreateArticleForm(request.POST, request.FILES)
         if article_form.is_valid():
+            
+            # If the title entered was already in the article it will detect and avoid the integrity error.
             title_entered = article_form.cleaned_data.get('title')
             if Article.objects.filter(title=title_entered).exists():
-                return redirect('blog:title_duplicate_error', title_entered)        
+                return redirect('blog:title_duplicate_error', title_entered)  
+            # End
+            
             instance = article_form.save(commit=False)
             instance.author = request.user
             instance.author_profile = profile_account
@@ -46,8 +44,7 @@ def create_article(request):
             return redirect('blog:home')           
             
     context = {'article_form': article_form}
-    return render(request, 'blog/create_article.html', context)      
-
+    return render(request, 'blog/create_article.html', context)         
 
 def blog_detail(request, slug):
     specific_article = Article.objects.get(slug=slug)
@@ -55,6 +52,32 @@ def blog_detail(request, slug):
     
     context = {'specific_article': specific_article, 'profile_author': profile_author}    
     return render(request, 'blog/blog_detail.html', context)
+
+@login_required
+def update_article(request, slug):
+    article = Article.objects.get(slug=slug)
+    article_form = CreateArticleForm(instance=article)
+    update_article = True
+    if request.method == 'POST':
+        article_form = CreateArticleForm(request.POST, instance=article)        
+        if article_form.is_valid():
+            messages.warning(request, 'Article has been updated')
+            article_form.save()
+            return redirect('blog:blog_detail', article.slug)
+    
+    context = {'article_form': article_form, 'update_article': update_article}
+    return render(request, 'blog/create_article.html', context)   
+
+@login_required
+def delete_article(request, slug):
+    article = Article.objects.get(slug=slug)
+    if request.method == 'POST':
+        messages.error(request, 'Article has been deleted')                
+        article.delete()
+        return redirect('blog:home')
+    
+    context = {'article': article}
+    return render(request, 'blog/delete_article.html', context)
 
 def about(request):
     context = {}
@@ -113,15 +136,6 @@ def edit_comment(request, pk, slug):
             
     context = {'comment_form': comment_form}
     return render(request, 'blog/comment_add.html', context)
-
-def delete_article(request, pk, slug):
-    article = Article.objects.get(slug=slug)
-    if request.method == 'POST':
-        article.delete()
-        return redirect('blog:home')
-    
-    context = {'article': article}
-    return render(request, 'blog/delete_article.html', context)
 
 def title_duplicate_error(request, title_entered):
 

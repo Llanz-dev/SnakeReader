@@ -14,6 +14,13 @@ Home
 
 {% block content %}
 <div class="container-md mt-3">
+  {% if messages %}                
+    <div class="bg-danger p-3 rounded text-white">            
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}                
+    </div>
+  {% endif %}
   {% if article_objects_left %}
     <h2 class="mb-3">Recent posts</h2>
   {% else %}
