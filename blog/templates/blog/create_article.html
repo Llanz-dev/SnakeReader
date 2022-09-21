@@ -8,27 +8,30 @@
 {% endblock file_css %}
 
 {% block title %}
-Create article
+    {% if update_article %}
+        Update article
+    {% else %}
+        Create article
+    {% endif %}
 {% endblock title %}
 
 {% block content %}
 <div class="container-md">    
     <div class="col-md-12">
-
         <form method="POST" enctype="multipart/form-data">
-
             {% csrf_token %}
             <div class="mb-3">
-
                 {{ article_form.media | safe | linebreaks }}
-                <h1>Create article</h1>
-
+                {% if update_article %}
+                   <h1>Update article</h1>
+                {% else %}
+                   <h1>Create article</h1>
+                {% endif %}
                 {% for field in article_form %}
                     <div class='col-md-7'>
                       {{ field|as_crispy_field }}
                     </div>
                 {% endfor %}
-
             </div>
             <div>
                 <button type="submit" class="btn btn-success">Submit</button>
