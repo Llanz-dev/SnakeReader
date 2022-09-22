@@ -59,7 +59,7 @@ def update_article(request, slug):
     article_form = CreateArticleForm(instance=article)
     update_article = True
     if request.method == 'POST':
-        article_form = CreateArticleForm(request.POST, instance=article)        
+        article_form = CreateArticleForm(request.POST, request.FILES, instance=article)
         if article_form.is_valid():
             messages.warning(request, 'Article has been updated')
             article_form.save()

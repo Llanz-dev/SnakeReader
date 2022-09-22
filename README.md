@@ -32,7 +32,7 @@ Install the SnakeReader with the following:
 #### This is a sample blog article. It shows the username of the author above the blog image this will redirect you to their profile if you click it.
 ![blog detail](screenshots/blog-detail.png?raw=true)
 ![blog detail 1](screenshots/blog-detail1.png?raw=true)
-#### You could click on the author's username or the green button to redirect to their profile.
+#### You could click on the author's username or the green button to redirect to their profile. You can comment and you have a delete and edit button if you are signed in.
 ![blog detail 2](screenshots/blog-detail2.png?raw=true)
 #### A sample of the profile page. This will show their info.
 ![author](screenshots/author.png?raw=true)
@@ -43,7 +43,7 @@ Install the SnakeReader with the following:
 #### You could also see all your articles. There is a sign-out button on the navbar for you to sign out.
 ![profile 1](screenshots/profile1.png?raw=true)
 
-## Acknowledgments
+## Acknowledgment
   ### My design was inspired by the following:
 - [health.com](https://www.health.com/) 
 - [ytravelblog.com](https://www.ytravelblog.com/things-to-do-on-fraser-island/) 

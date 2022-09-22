@@ -48,8 +48,12 @@ Author
                   <td>{{ author_info.user.last_name }}</td>
                 </tr>
                 <tr>
-                  <th scope="row">Province</th>
-                  <td>{{ author_info.province }}</td>
+                  <th scope="row">Province</th>                  
+                  {% if author_info.province %}
+                    <td>{{ author_info.province }}</td>                    
+                  {% else %}
+                    <td></td>
+                  {% endif %}                    
                 </tr>                              
               </tbody>
           </table> 
