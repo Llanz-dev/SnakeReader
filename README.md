@@ -5,7 +5,7 @@
 SnakeReader is a blog application that has various categories and you could also create your article and show anyone.
 
 - To make a blog article in the specific category and it will put your article in your chosen category. The article that you created will be posted on the home page and it will disappear if there are more than 9 articles that have been released by other authors. You will have also your profile page where you can see all the articles that you made and info about yourself. 
-- I find it difficult sometimes to get the field of the ForeignKey, ManyToMany, and OneToOne relationship. I hope to add a comment section on each article and have a delete function for the deletion of the profile.
+- I find it difficult sometimes to get the field of the ForeignKey, ManyToMany, and OneToOne relationship.
 
 ## Built With
 - HTML
